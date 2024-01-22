@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerState_Move : PlayerState
 {
     [SerializeField] float runSpeed = 5f;
+    [SerializeField] float turnRate = 20f;
     [SerializeField] float acceleration = 5f;
     public override void Enter()
     {
@@ -12,11 +13,21 @@ public class PlayerState_Move : PlayerState
     }
     public override void LogicUpdate()
     {
+        float targetRot = 0;
         if (!input.Move)
         {
             stateMachine.SwitchState(typeof(PlayerState_Idle));
         }
-        currentSpeed = Vector3.MoveTowards(currentSpeed, input.axes * runSpeed, acceleration * Time.deltaTime);
+        else
+        {
+            targetRot = Quaternion.LookRotation(input.moveAxes).eulerAngles.y + player.cam.transform.rotation.eulerAngles.y;
+            Quaternion rotation = Quaternion.Euler(0, targetRot, 0);
+            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, rotation, turnRate * Time.deltaTime);
+        }
+
+        Vector3 targetDir = Quaternion.Euler(0, targetRot, 0) * Vector3.forward;
+        currentSpeed = Vector3.MoveTowards(currentSpeed, targetDir.normalized * runSpeed, acceleration * Time.deltaTime);
+        animator.SetFloat("speed", currentSpeed.magnitude);
     }
     public override void PhysicUpdate()
     {

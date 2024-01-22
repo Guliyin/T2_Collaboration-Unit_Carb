@@ -16,6 +16,8 @@ public class PlayerState_Idle : PlayerState
             stateMachine.SwitchState(typeof(PlayerState_Move));
         }
         currentSpeed = Vector3.MoveTowards(currentSpeed, Vector3.zero, deceleration * Time.deltaTime);
+
+        animator.SetFloat("speed", currentSpeed.magnitude);
     }
     public override void PhysicUpdate()
     {

@@ -6,7 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
     PlayerInputActions playerInputActions;
 
-    public Vector3 axes
+    public Vector3 moveAxes
     {
         get 
         {
@@ -15,14 +15,18 @@ public class PlayerInput : MonoBehaviour
             return output; 
         }
     }
+    public Vector2 mouseAxes => playerInputActions.Gameplay.Look.ReadValue<Vector2>();
 
-    public bool Move => axes.magnitude != 0f;
+    public bool Move => moveAxes.magnitude != 0f;
 
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
     }
-
+    private void Update()
+    {
+        
+    }
     public void EnableGameplayInputs()
     {
         playerInputActions.Gameplay.Enable();
