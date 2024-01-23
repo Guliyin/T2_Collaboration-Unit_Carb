@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="States/Player/Idle", fileName ="PlayerState_Idle")]
+[CreateAssetMenu(menuName = "States/Player/Idle", fileName = "PlayerState_Idle")]
 public class PlayerState_Idle : PlayerState
 {
     [SerializeField] float deceleration = 5;
@@ -13,10 +13,18 @@ public class PlayerState_Idle : PlayerState
     {
         if (input.Move)
         {
-            stateMachine.SwitchState(typeof(PlayerState_Move));
+            if (input.Sprint) 
+                stateMachine.SwitchState(typeof(PlayerState_Sprint));
+            else
+                stateMachine.SwitchState(typeof(PlayerState_Move));
         }
-        currentSpeed = Vector3.MoveTowards(currentSpeed, Vector3.zero, deceleration * Time.deltaTime);
+        if (input.Attack)
+        {
+            System.Type a = input.RightAttack ? typeof(PlayerState_RightAttack) : typeof(PlayerState_Idle);
+            stateMachine.SwitchState(a);
+        }
 
+        currentSpeed = Vector3.MoveTowards(currentSpeed, Vector3.zero, deceleration * Time.deltaTime);
         animator.SetFloat("speed", currentSpeed.magnitude);
     }
     public override void PhysicUpdate()

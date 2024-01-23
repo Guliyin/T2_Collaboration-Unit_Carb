@@ -16,6 +16,9 @@ public class PlayerInput : MonoBehaviour
         }
     }
     public Vector2 mouseAxes => playerInputActions.Gameplay.Look.ReadValue<Vector2>();
+    public bool Sprint => playerInputActions.Gameplay.Sprint.IsPressed();
+    public bool RightAttack => playerInputActions.Gameplay.RightAttack.WasPressedThisFrame();
+    public bool Attack => RightAttack;
 
     public bool Move => moveAxes.magnitude != 0f;
 

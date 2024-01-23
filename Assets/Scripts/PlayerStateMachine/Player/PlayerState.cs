@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerState : ScriptableObject, IState
 {
     [SerializeField] string animName;
-    [SerializeField, Range(0f, 1f)] protected float transitionDuration = 0f;
+    [SerializeField, Range(0f, 1f)] protected float transitionDuration = 0.1f;
     int stateHash;
     float stateStartTime;
     protected Vector3 currentSpeed;
@@ -14,7 +14,7 @@ public class PlayerState : ScriptableObject, IState
     protected PlayerInput input;
     protected PlayerStateMachine stateMachine;
 
-    protected bool IsAnimationFinished => StateDuration >= 0;
+    protected bool IsAnimationFinished => StateDuration >= animator.GetCurrentAnimatorStateInfo(0).length;
     protected float StateDuration => Time.time - stateStartTime;
 
     public void Initialize(Animator animator, PlayerController player, PlayerInput input, PlayerStateMachine stateMachine)
