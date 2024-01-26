@@ -17,6 +17,7 @@ public class PlayerInput : MonoBehaviour
     }
     public Vector2 mouseAxes => playerInputActions.Gameplay.Look.ReadValue<Vector2>();
     public bool Sprint => playerInputActions.Gameplay.Sprint.IsPressed();
+    public bool Dash => playerInputActions.Gameplay.Dash.WasPerformedThisFrame();
     public bool RightAttack => playerInputActions.Gameplay.RightAttack.WasPressedThisFrame();
     public bool Attack => RightAttack;
 

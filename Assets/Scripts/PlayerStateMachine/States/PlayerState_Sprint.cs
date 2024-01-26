@@ -23,6 +23,11 @@ public class PlayerState_Sprint : PlayerState
             stateMachine.SwitchState(a);
         }
 
+        if (input.Dash)
+        {
+            stateMachine.SwitchState(typeof(PlayerState_Dash));
+        }
+
         if (!input.Move)
         {
             stateMachine.SwitchState(typeof(PlayerState_Idle));

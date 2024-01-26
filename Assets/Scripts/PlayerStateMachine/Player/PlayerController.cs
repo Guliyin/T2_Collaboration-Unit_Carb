@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     PlayerInput input;
     Rigidbody rb;
 
-    public Camera cam;
+    [HideInInspector] public Camera cam;
     public Vector3 MoveSpeed => new Vector3(rb.velocity.x, 0, rb.velocity.z);
     public float verticalSpeed => rb.velocity.y;
 

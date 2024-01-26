@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_RightAttack.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\Player\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_Idle.cs" />
+    <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_Dash.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\StateMachine\IState.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_Sprint.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\Player\PlayerStateMachine.cs" />

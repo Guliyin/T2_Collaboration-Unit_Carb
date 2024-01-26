@@ -18,6 +18,10 @@ public class PlayerState_Idle : PlayerState
             else
                 stateMachine.SwitchState(typeof(PlayerState_Move));
         }
+        if (input.Dash)
+        {
+            stateMachine.SwitchState(typeof(PlayerState_Dash));
+        }
         if (input.Attack)
         {
             System.Type a = input.RightAttack ? typeof(PlayerState_RightAttack) : typeof(PlayerState_Idle);
