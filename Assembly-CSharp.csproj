@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_Move.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\55 Skybox pack\readme.txt" />
     <None Include="Assets\Toon Water URP\Functions\OtherLightsInfo.cginc" />
     <None Include="Assets\Toon Water URP\README.txt" />
     <None Include="Assets\Toon Water URP\Functions\ClipValues.cginc" />
