@@ -60,26 +60,57 @@
     <Compile Include="Assets\Scripts\PlayerStateMachine\StateMachine\StateMachine.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_RightAttack.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\Player\PlayerInput.cs" />
+    <Compile Include="Assets\VolumetricFog2\Scripts\Managers\PointLightManager.cs" />
+    <Compile Include="Assets\VolumetricFog2\Scripts\Managers\VolumetricFogManager.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_Idle.cs" />
+    <Compile Include="Assets\VolumetricFog2\Scripts\VolumetricFogProfile.cs" />
+    <Compile Include="Assets\VolumetricFog2\Scripts\FogVoid.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_Dash.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\StateMachine\IState.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_Sprint.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\Player\PlayerStateMachine.cs" />
+    <Compile Include="Assets\VolumetricFog2\Scripts\VolumetricFog.FoW.cs" />
+    <Compile Include="Assets\VolumetricFog2\Scripts\Tools\Tools.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\Player\PlayerController.cs" />
+    <Compile Include="Assets\VolumetricFog2\Scripts\Managers\FogVoidManager.cs" />
     <Compile Include="Assets\RobotSphere\Assets\Scripts\RobotFreeAnim.cs" />
+    <Compile Include="Assets\VolumetricFog2\Scripts\RenderFeatures\DepthRenderPrePassFeature.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\EventSystem\EventCenter.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\Player\PlayerState.cs" />
-    <Compile Include="Assets\Toon Water URP\Scripts\PlanarReflectionsRenderer.cs" />
+    <Compile Include="Assets\VolumetricFog2\Scripts\Managers\IVolumetricFogManager.cs" />
     <Compile Include="Assets\Scripts\EventSystem\FunctionType.cs" />
+    <Compile Include="Assets\VolumetricFog2\Scripts\VolumetricFog.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_Move.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Skybox pack\readme.txt" />
-    <None Include="Assets\Toon Water URP\Functions\OtherLightsInfo.cginc" />
-    <None Include="Assets\Toon Water URP\README.txt" />
-    <None Include="Assets\Toon Water URP\Functions\ClipValues.cginc" />
-    <None Include="Assets\Toon Water URP\Functions\DirLightInfo.cginc" />
+    <None Include="Assets\StylizedWater2\Shaders\Libraries\Lighting.hlsl" />
+    <None Include="Assets\StylizedWater2\Shaders\Libraries\Features.hlsl" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\FogOfWarBlur.shader" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\Primitives.cginc" />
+    <None Include="Assets\StylizedWater2\Shaders\Libraries\ForwardPass.hlsl" />
+    <None Include="Assets\StylizedWater2\Shaders\Libraries\Tesselation.hlsl" />
+    <None Include="Assets\StylizedWater2\Shaders\Libraries\Common.hlsl" />
+    <None Include="Assets\StylizedWater2\Shaders\Libraries\Fog.hlsl" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\DepthOnly.shader" />
+    <None Include="Assets\StylizedWater2\Shaders\WaterTransparencyMask.shader" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\Raymarch2D.cginc" />
+    <None Include="Assets\StylizedWater2\Shaders\Libraries\Caustics.hlsl" />
+    <None Include="Assets\StylizedWater2\Shaders\Libraries\Input.hlsl" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\ShadowsURP.cginc" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\Noise2DGen.shader" />
+    <None Include="Assets\StylizedWater2\Shaders\Libraries\Vertex.hlsl" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\FogOfWar.cginc" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\FogDistance.cginc" />
+    <None Include="Assets\VolumetricFog2\README.txt" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\CommonsURP.hlsl" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\PointLights.cginc" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\Empty.shader" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\FogVoids.cginc" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\VolumetricFog2DURP.shader" />
+    <None Include="Assets\StylizedWater2\Shaders\Libraries\Waves.hlsl" />
+    <None Include="Assets\VolumetricFog2\Resources\Shaders\Turbulence2D.shader" />
+    <None Include="Assets\StylizedWater2\Shaders\Libraries\URP.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -819,6 +850,14 @@
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{0C3E8779-6F07-83CD-6376-FA30412EC403}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="sc.stylizedwater2.runtime.csproj">
+      <Project>{78C51FB7-7429-E753-660A-82C5EF833F3E}</Project>
+      <Name>sc.stylizedwater2.runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="sc.stylizedwater2.editor.csproj">
+      <Project>{93FC666A-AD1F-5FD7-B260-5B832768751D}</Project>
+      <Name>sc.stylizedwater2.editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

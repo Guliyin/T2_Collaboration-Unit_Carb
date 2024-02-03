@@ -60,14 +60,11 @@
     <Compile Include="Assets\StylizedWater2\Runtime\WaterGrid.cs" />
     <Compile Include="Assets\StylizedWater2\Runtime\StylizedWaterDataProvider.cs" />
     <Compile Include="Assets\StylizedWater2\Runtime\WaterMesh.cs" />
-    <Compile Include="Assets\StylizedWater2\Runtime\Rendering\StylizedWaterRenderFeature.cs" />
+    <Compile Include="Assets\StylizedWater2\Runtime\FloatingTransform.cs" />
     <Compile Include="Assets\StylizedWater2\Runtime\WaterObject.cs" />
-    <Compile Include="Assets\StylizedWater2\Runtime\AlignToWaves.cs" />
-    <Compile Include="Assets\StylizedWater2\Runtime\Rendering\PlanarReflectionRenderer.cs" />
-    <Compile Include="Assets\StylizedWater2\Runtime\Rendering\SetupConstants.cs" />
+    <Compile Include="Assets\StylizedWater2\Runtime\PlanarReflectionRenderer.cs" />
     <Compile Include="Assets\StylizedWater2\Runtime\Buoyancy.cs" />
     <Compile Include="Assets\StylizedWater2\Runtime\WaveParameters.cs" />
-    <Compile Include="Assets\StylizedWater2\Runtime\Rendering\DisplacementPrePass.cs" />
     <Compile Include="Assets\StylizedWater2\Runtime\PipelineUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -757,9 +754,6 @@
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>

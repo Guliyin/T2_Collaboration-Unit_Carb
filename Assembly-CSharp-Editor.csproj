@@ -57,8 +57,13 @@
     <Analyzer Include="F:\unity2022\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Toon Water URP\Editor\ToonWaterInspector.cs" />
+    <Compile Include="Assets\VolumetricFog2\Editor\VolumetricFogEditor.FoW.cs" />
+    <Compile Include="Assets\VolumetricFog2\Editor\VolumetricFogManagerEditor.cs" />
+    <Compile Include="Assets\VolumetricFog2\Editor\NoiseGenerator.cs" />
+    <Compile Include="Assets\VolumetricFog2\Editor\NoiseTools.cs" />
+    <Compile Include="Assets\VolumetricFog2\Editor\VolumetricFogEditor.cs" />
     <Compile Include="Assets\RobotSphere\Assets\Scripts\Editor\RobotFreeAnimEditor.cs" />
+    <Compile Include="Assets\VolumetricFog2\Editor\MenuIntegration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -862,6 +867,14 @@
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{4DF671FF-3391-B525-E59B-5087DA160BEC}</Project>
       <Name>Assembly-CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="sc.stylizedwater2.runtime.csproj">
+      <Project>{78C51FB7-7429-E753-660A-82C5EF833F3E}</Project>
+      <Name>sc.stylizedwater2.runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="sc.stylizedwater2.editor.csproj">
+      <Project>{93FC666A-AD1F-5FD7-B260-5B832768751D}</Project>
+      <Name>sc.stylizedwater2.editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
