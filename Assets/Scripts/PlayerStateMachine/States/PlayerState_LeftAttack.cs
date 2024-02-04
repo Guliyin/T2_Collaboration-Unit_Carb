@@ -1,14 +1,17 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Player/FastRightAttack", fileName = "PlayerState_FastRightAttack")]
-public class PlayerState_FastRightAttack : PlayerState
+[CreateAssetMenu(menuName = "States/Player/RightAttack", fileName = "PlayerState_RightAttack")]
+public class PlayerState_LeftAttack : PlayerState
 {
     [SerializeField] float deceleration = 50;
     public override void Enter()
     {
         base.Enter();
-        input.HasAttackInputBuffer = false;
         currentSpeed = player.MoveSpeed;
+        if (player.isLocking)
+        {
+            player.transform.rotation = Quaternion.Euler(0, Quaternion.LookRotation(player.enemy.position - player.transform.position).eulerAngles.y, 0);
+        }
     }
     public override void LogicUpdate()
     {

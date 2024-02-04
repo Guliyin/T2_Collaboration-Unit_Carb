@@ -19,6 +19,10 @@ public class PlayerState_RightAttack : PlayerState
         {
             input.SetAttackInputBufferTimer();
         }
+        if (input.Dash)
+        {
+            stateMachine.SwitchState(typeof(PlayerState_Dash));
+        }
         if (IsAnimationFinished)
         {
             if (input.HasAttackInputBuffer)
