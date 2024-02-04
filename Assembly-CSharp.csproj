@@ -67,6 +67,7 @@
     <Compile Include="Assets\VolumetricFog2\Scripts\Managers\PointLightManager.cs" />
     <Compile Include="Assets\VolumetricFog2\Scripts\Managers\VolumetricFogManager.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_Idle.cs" />
+    <Compile Include="Assets\Scripts\DamagePopup.cs" />
     <Compile Include="Assets\VolumetricFog2\Scripts\VolumetricFogProfile.cs" />
     <Compile Include="Assets\VolumetricFog2\Scripts\FogVoid.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_Dash.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Assets\VolumetricFog2\Scripts\Managers\IVolumetricFogManager.cs" />
     <Compile Include="Assets\Scripts\MonoSingleton.cs" />
     <Compile Include="Assets\Scripts\EventSystem\FunctionType.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\VolumetricFog2\Scripts\VolumetricFog.cs" />
     <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_Move.cs" />
   </ItemGroup>

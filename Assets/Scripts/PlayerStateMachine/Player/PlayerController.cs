@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] Transform cameraFollowPos;
     float xCamRot;
     float yCamRot;
-
-    [Range(0,1)]
-    [SerializeField] float mouseSensitivity;
 
     PlayerInput input;
     Rigidbody rb;
@@ -19,8 +17,19 @@ public class PlayerController : MonoBehaviour
     public Vector3 MoveSpeed => new Vector3(rb.velocity.x, 0, rb.velocity.z);
     public float verticalSpeed => rb.velocity.y;
 
-    public bool isLocking;
+    public bool isLocking { get; set; }
     public Transform enemy;
+
+    [Space]
+    [Header("µ÷ÊÔÑ¡Ïî")]
+    [SerializeField] bool enableHitStop;
+    [Range(0, 1)]
+    [SerializeField] float mouseSensitivity;
+
+    [SerializeField] float a;
+    [SerializeField] float b;
+    [SerializeField] int c;
+    [SerializeField] float d;
 
     private void Awake()
     {
@@ -32,7 +41,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         input.EnableGameplayInputs();
-
         var triggers = GetComponentsInChildren<PlayerAttackTrigger>();
         foreach (var trigger in triggers)
         {
@@ -53,16 +61,20 @@ public class PlayerController : MonoBehaviour
 
     public void HitEnemy()
     {
-        StopCoroutine(nameof(HitStop));
-        StartCoroutine(nameof(HitStop));
+        if (enableHitStop)
+        {
+            StopCoroutine(nameof(HitStop));
+            StartCoroutine(nameof(HitStop));
+        }
+        cam.DOShakePosition(a, b, c, d, true);
     }
     IEnumerator HitStop()
     {
-        //animator.speed = 0f;
-        Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(2f);
-        Time.timeScale = 1;
-        //animator.speed = 1;
+        animator.speed = 0f;
+        //Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(0.1f);
+        //Time.timeScale = 1;
+        animator.speed = 1;
     }
 
     public void Move(Vector3 horizontalVelocity)
@@ -81,7 +93,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            print(input.mouseAxes);
             xCamRot -= input.mouseAxes.y * mouseSensitivity;
             yCamRot += input.mouseAxes.x * mouseSensitivity;
             xCamRot = Mathf.Clamp(xCamRot, -30, 70);
