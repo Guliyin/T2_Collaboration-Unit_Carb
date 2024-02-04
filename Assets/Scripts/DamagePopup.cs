@@ -6,13 +6,20 @@ using DG.Tweening;
 public class DamagePopup : MonoBehaviour
 {
     [SerializeField] float posRandRange;
-    [SerializeField] float StartSpeed;
-    [SerializeField] float SpeedDirRange;
+    [SerializeField] Vector2 startSpeedRange;
+    float startSpeedX;
+    float startSpeedY;
     void OnEnable()
     {
+        transform.localPosition = Vector3.zero;
+
         transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
-        transform.position += new Vector3(Random.Range(-posRandRange,posRandRange), Random.Range(-posRandRange, posRandRange), Random.Range(-posRandRange, posRandRange));
+        transform.localPosition += new Vector3(Random.Range(-posRandRange,posRandRange), Random.Range(-posRandRange, posRandRange), Random.Range(-posRandRange, posRandRange));
         //Invoke(nameof(Anim), 1f);
+
+        startSpeedX = Random.Range(-startSpeedRange.x, startSpeedRange.x);
+        startSpeedY = Random.Range(startSpeedRange.y - 1, startSpeedRange.y);
+
         Anim();
     }
 
@@ -26,5 +33,10 @@ public class DamagePopup : MonoBehaviour
         sequence.Append(transform.DOScale(0, 0.3f));
 
         sequence.Play();
+    }
+    private void Update()
+    {
+        startSpeedY += -9.8f * Time.deltaTime;
+        transform.localPosition += new Vector3(startSpeedX * Time.deltaTime, startSpeedY * Time.deltaTime, 0);
     }
 }

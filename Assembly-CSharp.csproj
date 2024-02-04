@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\PlayerStateMachine\Player\PlayerState.cs" />
     <Compile Include="Assets\VolumetricFog2\Scripts\Managers\IVolumetricFogManager.cs" />
     <Compile Include="Assets\Scripts\MonoSingleton.cs" />
+    <Compile Include="Assets\Scripts\PlayerStateMachine\States\PlayerState_LeftAttack.cs" />
     <Compile Include="Assets\Scripts\EventSystem\FunctionType.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\VolumetricFog2\Scripts\VolumetricFog.cs" />

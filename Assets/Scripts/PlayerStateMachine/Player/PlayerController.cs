@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(nameof(HitStop));
             StartCoroutine(nameof(HitStop));
         }
-        cam.DOShakePosition(a, b, c, d, true);
+        cam.DOShakePosition(0.1f, 0.1f, 3, 90, true);
     }
     IEnumerator HitStop()
     {
