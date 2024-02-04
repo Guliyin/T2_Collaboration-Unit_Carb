@@ -71,6 +71,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Lock"",
+                    ""type"": ""Button"",
+                    ""id"": ""896d8978-e1c1-454d-bd6e-1dacf027a080"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -208,12 +217,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""f3df7b84-93a9-4edf-9926-a5c248b97f2b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MNK"",
+                    ""action"": ""RightAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""12ba4b28-b931-493f-9488-fd1231770f69"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MNK"",
                     ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f693ea8a-09de-47e0-bd2c-2134aeaf3b8e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MNK"",
+                    ""action"": ""Lock"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -268,6 +299,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Gameplay_Sprint = m_Gameplay.FindAction("Sprint", throwIfNotFound: true);
         m_Gameplay_RightAttack = m_Gameplay.FindAction("RightAttack", throwIfNotFound: true);
         m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
+        m_Gameplay_Lock = m_Gameplay.FindAction("Lock", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -337,6 +369,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Sprint;
     private readonly InputAction m_Gameplay_RightAttack;
     private readonly InputAction m_Gameplay_Dash;
+    private readonly InputAction m_Gameplay_Lock;
     public struct GameplayActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -346,6 +379,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Gameplay_Sprint;
         public InputAction @RightAttack => m_Wrapper.m_Gameplay_RightAttack;
         public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
+        public InputAction @Lock => m_Wrapper.m_Gameplay_Lock;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -370,6 +404,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @Lock.started += instance.OnLock;
+            @Lock.performed += instance.OnLock;
+            @Lock.canceled += instance.OnLock;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -389,6 +426,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @Lock.started -= instance.OnLock;
+            @Lock.performed -= instance.OnLock;
+            @Lock.canceled -= instance.OnLock;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -477,6 +517,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnRightAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnLock(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

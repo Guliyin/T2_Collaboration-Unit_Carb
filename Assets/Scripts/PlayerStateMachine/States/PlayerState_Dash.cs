@@ -36,7 +36,6 @@ public class PlayerState_Dash : PlayerState
     }
     public override void Exit()
     {
-        Debug.Log(currentSpeed);
         player.Move(currentSpeed);
     }
 }

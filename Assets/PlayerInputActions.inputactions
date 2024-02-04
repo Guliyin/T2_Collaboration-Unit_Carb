@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Lock",
+                    "type": "Button",
+                    "id": "896d8978-e1c1-454d-bd6e-1dacf027a080",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -186,12 +195,34 @@
                 },
                 {
                     "name": "",
+                    "id": "f3df7b84-93a9-4edf-9926-a5c248b97f2b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MNK",
+                    "action": "RightAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "12ba4b28-b931-493f-9488-fd1231770f69",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "MNK",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f693ea8a-09de-47e0-bd2c-2134aeaf3b8e",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MNK",
+                    "action": "Lock",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

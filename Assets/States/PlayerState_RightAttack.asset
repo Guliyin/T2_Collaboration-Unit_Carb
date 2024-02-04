@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerState_RightAttack
   m_EditorClassIdentifier: 
   animName: PlayerState_RightAttack
-  transitionDuration: 0
+  transitionDuration: 0.1
   deceleration: 50

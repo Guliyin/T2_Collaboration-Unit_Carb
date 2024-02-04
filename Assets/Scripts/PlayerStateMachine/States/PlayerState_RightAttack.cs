@@ -8,12 +8,27 @@ public class PlayerState_RightAttack : PlayerState
     {
         base.Enter();
         currentSpeed = player.MoveSpeed;
+        if (player.isLocking)
+        {
+            player.transform.rotation = Quaternion.Euler(0, Quaternion.LookRotation(player.enemy.position - player.transform.position).eulerAngles.y, 0);
+        }
     }
     public override void LogicUpdate()
     {
+        if (input.Attack)
+        {
+            input.SetAttackInputBufferTimer();
+        }
         if (IsAnimationFinished)
         {
-            stateMachine.SwitchState(typeof(PlayerState_Idle));
+            if (input.HasAttackInputBuffer)
+            {
+                stateMachine.SwitchState(typeof(PlayerState_FastRightAttack));
+            }
+            else
+            {
+                stateMachine.SwitchState(typeof(PlayerState_Idle));
+            }
         }
 
         currentSpeed = Vector3.MoveTowards(currentSpeed, Vector3.zero, deceleration * Time.deltaTime);
