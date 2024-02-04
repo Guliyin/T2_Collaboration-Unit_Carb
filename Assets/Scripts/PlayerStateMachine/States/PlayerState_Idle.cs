@@ -22,10 +22,13 @@ public class PlayerState_Idle : PlayerState
         {
             stateMachine.SwitchState(typeof(PlayerState_Dash));
         }
-        if (input.Attack)
+        if (input.LeftAttack)
         {
-            System.Type a = input.RightAttack ? typeof(PlayerState_RightAttack) : typeof(PlayerState_Idle);
-            stateMachine.SwitchState(a);
+            stateMachine.SwitchState(typeof(PlayerState_LeftAttack));
+        }
+        if (input.RightAttack)
+        {
+            stateMachine.SwitchState(typeof(PlayerState_RightAttack));
         }
 
         currentSpeed = Vector3.MoveTowards(currentSpeed, Vector3.zero, deceleration * Time.deltaTime);

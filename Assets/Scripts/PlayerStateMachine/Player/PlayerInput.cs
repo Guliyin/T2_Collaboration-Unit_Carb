@@ -6,7 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] float attackInputBufferTime = 0.5f;
     WaitForSeconds waitInputBufferTime;
-    public bool HasAttackInputBuffer;
+    public int HasAttackInputBuffer;
 
     PlayerInputActions playerInputActions;
 
@@ -23,7 +23,8 @@ public class PlayerInput : MonoBehaviour
     public bool Sprint => playerInputActions.Gameplay.Sprint.IsPressed();
     public bool Dash => playerInputActions.Gameplay.Dash.WasPerformedThisFrame();
     public bool RightAttack => playerInputActions.Gameplay.RightAttack.WasPressedThisFrame();
-    public bool Attack => RightAttack;
+    public bool LeftAttack => playerInputActions.Gameplay.LeftAttack.WasPressedThisFrame();
+    public bool Attack => RightAttack||LeftAttack;
 
     public bool Lock => playerInputActions.Gameplay.Lock.WasPerformedThisFrame();
 
@@ -43,15 +44,15 @@ public class PlayerInput : MonoBehaviour
         playerInputActions.Gameplay.Enable();
         Cursor.lockState = CursorLockMode.Locked;
     }
-    public void SetAttackInputBufferTimer()
+    public void SetAttackInputBufferTimer(int n)
     {
         StopCoroutine(nameof(AttackInputBufferCoroutine));
-        StartCoroutine(nameof(AttackInputBufferCoroutine));
+        StartCoroutine(nameof(AttackInputBufferCoroutine), n);
     }
-    IEnumerator AttackInputBufferCoroutine()
+    IEnumerator AttackInputBufferCoroutine(int n)
     {
-        HasAttackInputBuffer = true;
+        HasAttackInputBuffer = n;
         yield return waitInputBufferTime;
-        HasAttackInputBuffer = false;
+        HasAttackInputBuffer = 0;
     }
 }

@@ -15,10 +15,13 @@ public class PlayerState_Move : PlayerState
     {
         float targetRot = 0;
 
-        if (input.Attack)
+        if (input.LeftAttack)
         {
-            System.Type a = input.RightAttack ? typeof(PlayerState_RightAttack) : typeof(PlayerState_Idle);
-            stateMachine.SwitchState(a);
+            stateMachine.SwitchState(typeof(PlayerState_LeftAttack));
+        }
+        if (input.RightAttack)
+        {
+            stateMachine.SwitchState(typeof(PlayerState_RightAttack));
         }
 
         if (input.Dash)

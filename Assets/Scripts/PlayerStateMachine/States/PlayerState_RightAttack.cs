@@ -15,9 +15,13 @@ public class PlayerState_RightAttack : PlayerState
     }
     public override void LogicUpdate()
     {
-        if (input.Attack)
+        if (input.LeftAttack)
         {
-            input.SetAttackInputBufferTimer();
+            input.SetAttackInputBufferTimer(1);
+        }
+        if (input.RightAttack)
+        {
+            input.SetAttackInputBufferTimer(2);
         }
         if (input.Dash)
         {
@@ -25,7 +29,11 @@ public class PlayerState_RightAttack : PlayerState
         }
         if (IsAnimationFinished)
         {
-            if (input.HasAttackInputBuffer)
+            if (input.HasAttackInputBuffer == 1)
+            {
+                stateMachine.SwitchState(typeof(PlayerState_FastLeftAttack));
+            }
+            else if (input.HasAttackInputBuffer == 2)
             {
                 stateMachine.SwitchState(typeof(PlayerState_FastRightAttack));
             }
