@@ -10,12 +10,15 @@ public class PlayerAttackTrigger : MonoBehaviour
     [SerializeField] GameObject numberText;
     private void OnTriggerEnter(Collider other)
     {
-        GameObject blood = GameObjectPool.Instance.RequestCacheGameObejct(bloodParticle, 1f);
-        blood.transform.position = other.ClosestPoint(transform.position);
+        if (other.CompareTag("Enemy"))
+        {
+            GameObject blood = GameObjectPool.Instance.RequestCacheGameObejct(bloodParticle, 1f);
+            blood.transform.position = other.ClosestPoint(transform.position);
 
-        GameObject number = GameObjectPool.Instance.RequestCacheGameObejct(numberText, 1f);
-        number.transform.position = other.ClosestPoint(transform.position);
+            GameObject number = GameObjectPool.Instance.RequestCacheGameObejct(numberText, 1f);
+            number.transform.position = other.ClosestPoint(transform.position);
 
-        hit();
+            hit();
+        }
     }
 }
