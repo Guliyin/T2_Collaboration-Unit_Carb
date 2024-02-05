@@ -26,11 +26,6 @@ public class PlayerController : MonoBehaviour
     [Range(0, 1)]
     [SerializeField] float mouseSensitivity;
 
-    [SerializeField] float a;
-    [SerializeField] float b;
-    [SerializeField] int c;
-    [SerializeField] float d;
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -66,7 +61,7 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(nameof(HitStop));
             StartCoroutine(nameof(HitStop));
         }
-        cam.DOShakePosition(0.1f, 0.1f, 3, 90, true);
+        cam.DOShakePosition(0.1f, 0.075f, 3, 90, true);
     }
     IEnumerator HitStop()
     {

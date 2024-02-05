@@ -64,6 +64,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""LeftAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""4bed4905-6ed9-4418-ac2c-0bed6f3d10f0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""dfa1b5eb-6991-476b-bece-906804f360ac"",
@@ -217,17 +226,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f3df7b84-93a9-4edf-9926-a5c248b97f2b"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""MNK"",
-                    ""action"": ""RightAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""12ba4b28-b931-493f-9488-fd1231770f69"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -245,6 +243,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""MNK"",
                     ""action"": ""Lock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""573ff0e2-18e8-4ee1-8cf4-0f80f531190c"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MNK"",
+                    ""action"": ""LeftAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4b1a1b0-bcf6-41c8-bb6c-61fd1d1fc001"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""LeftAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -298,6 +318,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
         m_Gameplay_Sprint = m_Gameplay.FindAction("Sprint", throwIfNotFound: true);
         m_Gameplay_RightAttack = m_Gameplay.FindAction("RightAttack", throwIfNotFound: true);
+        m_Gameplay_LeftAttack = m_Gameplay.FindAction("LeftAttack", throwIfNotFound: true);
         m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
         m_Gameplay_Lock = m_Gameplay.FindAction("Lock", throwIfNotFound: true);
         // UI
@@ -368,6 +389,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Look;
     private readonly InputAction m_Gameplay_Sprint;
     private readonly InputAction m_Gameplay_RightAttack;
+    private readonly InputAction m_Gameplay_LeftAttack;
     private readonly InputAction m_Gameplay_Dash;
     private readonly InputAction m_Gameplay_Lock;
     public struct GameplayActions
@@ -378,6 +400,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Gameplay_Look;
         public InputAction @Sprint => m_Wrapper.m_Gameplay_Sprint;
         public InputAction @RightAttack => m_Wrapper.m_Gameplay_RightAttack;
+        public InputAction @LeftAttack => m_Wrapper.m_Gameplay_LeftAttack;
         public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
         public InputAction @Lock => m_Wrapper.m_Gameplay_Lock;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
@@ -401,6 +424,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @RightAttack.started += instance.OnRightAttack;
             @RightAttack.performed += instance.OnRightAttack;
             @RightAttack.canceled += instance.OnRightAttack;
+            @LeftAttack.started += instance.OnLeftAttack;
+            @LeftAttack.performed += instance.OnLeftAttack;
+            @LeftAttack.canceled += instance.OnLeftAttack;
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
@@ -423,6 +449,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @RightAttack.started -= instance.OnRightAttack;
             @RightAttack.performed -= instance.OnRightAttack;
             @RightAttack.canceled -= instance.OnRightAttack;
+            @LeftAttack.started -= instance.OnLeftAttack;
+            @LeftAttack.performed -= instance.OnLeftAttack;
+            @LeftAttack.canceled -= instance.OnLeftAttack;
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
@@ -516,6 +545,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnRightAttack(InputAction.CallbackContext context);
+        void OnLeftAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnLock(InputAction.CallbackContext context);
     }

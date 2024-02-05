@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Player/RightAttack", fileName = "PlayerState_RightAttack")]
+[CreateAssetMenu(menuName = "States/Player/LeftAttack", fileName = "PlayerState_LeftAttack")]
 public class PlayerState_LeftAttack : PlayerState
 {
     [SerializeField] float deceleration = 50;
@@ -15,9 +15,13 @@ public class PlayerState_LeftAttack : PlayerState
     }
     public override void LogicUpdate()
     {
-        if (input.Attack)
+        if (input.LeftAttack)
         {
-            input.SetAttackInputBufferTimer();
+            input.SetAttackInputBufferTimer(1);
+        }
+        if (input.RightAttack)
+        {
+            input.SetAttackInputBufferTimer(2);
         }
         if (input.Dash)
         {
@@ -25,7 +29,11 @@ public class PlayerState_LeftAttack : PlayerState
         }
         if (IsAnimationFinished)
         {
-            if (input.HasAttackInputBuffer)
+            if (input.HasAttackInputBuffer == 1)
+            {
+                stateMachine.SwitchState(typeof(PlayerState_FastLeftAttack));
+            }
+            else if (input.HasAttackInputBuffer == 2)
             {
                 stateMachine.SwitchState(typeof(PlayerState_FastRightAttack));
             }
