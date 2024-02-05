@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         var triggers = GetComponentsInChildren<PlayerAttackTrigger>();
         foreach (var trigger in triggers)
         {
-            trigger.hit += HitEnemy;
+            trigger.hitEnemy += HitEnemy;
         }
     }
     private void Update()

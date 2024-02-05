@@ -11,6 +11,9 @@ public class HealthSystem
     private int healthAmount;
     private int healthAmountMax;
 
+    public int Health => healthAmount;
+    public float NormalizedHealth => (float)healthAmount / healthAmountMax;
+
     public HealthSystem(int healthAmount)
     {
         healthAmountMax = healthAmount;
@@ -33,9 +36,5 @@ public class HealthSystem
             healthAmount = healthAmountMax;
         }
         if (OnHealed != null) OnHealed(this, EventArgs.Empty);
-    }
-    public float GetHealthNormalized()
-    {
-        return (float)healthAmount / healthAmountMax;
     }
 }

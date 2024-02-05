@@ -21,7 +21,7 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         healthSystem = new HealthSystem(1000);
-        SetHealth(healthSystem.GetHealthNormalized());
+        SetHealth(healthSystem.NormalizedHealth);
         damagedHealthShrinkTimer = DAMAGED_HEALTH_SHRINK_TIMER_MAX;
 
         healthSystem.OnDamaged += HealthSystem_OnDamaged;
@@ -40,7 +40,6 @@ public class HealthBar : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            print("?");
             healthSystem.Damage(10);
         }
     }
@@ -48,7 +47,7 @@ public class HealthBar : MonoBehaviour
     void HealthSystem_OnDamaged(object sender, System.EventArgs e)
     {
         damagedHealthShrinkTimer = DAMAGED_HEALTH_SHRINK_TIMER_MAX;
-        SetHealth(healthSystem.GetHealthNormalized());
+        SetHealth(healthSystem.NormalizedHealth);
     }
 
     void SetHealth(float healthNormalized)

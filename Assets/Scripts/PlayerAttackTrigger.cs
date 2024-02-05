@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PlayerAttackTrigger : MonoBehaviour
 {
-    public Action hit;
+    [SerializeField] int Damage;
+
+    public Action hitEnemy;
     [SerializeField] GameObject bloodParticle;
     [SerializeField] GameObject numberText;
     private void OnTriggerEnter(Collider other)
@@ -18,7 +20,12 @@ public class PlayerAttackTrigger : MonoBehaviour
             GameObject number = GameObjectPool.Instance.RequestCacheGameObejct(numberText, 1f);
             number.transform.position = other.ClosestPoint(transform.position);
 
-            hit();
+            if (other.GetComponent<BossController>())
+            {
+                other.GetComponent<BossController>().Damage(Damage);
+            }
+
+            hitEnemy();
         }
     }
 }

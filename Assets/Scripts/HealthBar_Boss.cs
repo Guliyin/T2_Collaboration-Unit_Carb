@@ -1,52 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
 public class HealthBar_Boss : MonoBehaviour
 {
-    const float BAR_WIDTH = 1000f;
+    const float BAR_WIDTH = 1500f;
 
     Image healthBar;
+    TMP_Text healthText;
+    
     Transform damagedBarTemplate;
-    HealthSystem healthSystem;
+
+    int maxHealth;
 
     private void Awake()
     {
         healthBar = transform.Find("Fill").GetComponent<Image>();
+        healthText = transform.Find("HealthNumText").GetComponent<TMP_Text>();
         damagedBarTemplate = transform.Find("damagedBarTemplate");
     }
 
-    void Start()
+    public void Init(float initHealthNormalized,int maxHealth)
     {
-        healthSystem = new HealthSystem(1000);
-        SetHealth(healthSystem.GetHealthNormalized());
-
-        healthSystem.OnDamaged += HealthSystem_OnDamaged;
-    }
-    void Update()
-    {
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            healthSystem.Damage(10);
-        }
+        this.maxHealth = maxHealth;
+        SetHealth(initHealthNormalized);
     }
 
-    void HealthSystem_OnDamaged(object sender, System.EventArgs e)
+    public void HealthSystem_OnDamaged(int health)
     {
         float beforeDamaged = healthBar.fillAmount;
-        SetHealth(healthSystem.GetHealthNormalized());
+        SetHealth((float)health / maxHealth);
         Transform go = Instantiate(damagedBarTemplate, transform);
         go.gameObject.SetActive(true);
         RectTransform damagedBar = go.GetComponent<RectTransform>();
         damagedBar.anchoredPosition = new Vector2(healthBar.fillAmount * BAR_WIDTH, damagedBar.anchoredPosition.y);
         damagedBar.GetComponent<Image>().fillAmount = beforeDamaged - healthBar.fillAmount;
-
         damagedBar.DOAnchorPosY(-20, 0.3f);
         damagedBar.GetComponent<Image>().DOFade(0, 0.3f);
         Destroy(damagedBar.gameObject, 0.4f);
+
+        healthText.text = health + "/" + maxHealth;
     }
 
     void SetHealth(float healthNormalized)

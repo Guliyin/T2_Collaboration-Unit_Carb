@@ -26,7 +26,6 @@ public class DamagePopup : MonoBehaviour
     private void Anim()
     {
         Sequence sequence = DOTween.Sequence();
-        print("here");
         sequence.Append(transform.DOScale(1.2f, 0.05f));
         sequence.Append(transform.DOScale(1, 0.05f));
         sequence.AppendInterval(0.2f);
