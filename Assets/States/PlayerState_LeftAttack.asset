@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PlayerState_LeftAttack
   m_EditorClassIdentifier: 
   animName: PlayerState_LeftAttack
-  transitionDuration: 0.1
+  transitionDuration: 0.075
   staminaCost: 8
   deceleration: 50
+  moveSpeed: 8

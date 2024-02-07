@@ -5,11 +5,13 @@ public class PlayerState_FastLeftAttack : PlayerState
 {
     [SerializeField] float staminaCost;
     [SerializeField] float deceleration = 50;
+    [SerializeField] float moveSpeed = 6;
     public override void Enter()
     {
         base.Enter();
         player.DeductStamina(staminaCost);
         input.HasAttackInputBuffer = 0;
+        player.Move(moveSpeed * player.transform.forward);
         currentSpeed = player.MoveSpeed;
     }
     public override void LogicUpdate()
