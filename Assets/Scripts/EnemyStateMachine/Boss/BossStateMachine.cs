@@ -22,6 +22,6 @@ public class BossStateMachine : StateMachine
     }
     private void Start()
     {
-        SwitchOn(stateTable[typeof(BossState_Idle)]);
+        //SwitchOn(stateTable[typeof(BossState_Idle)]);
     }
 }
