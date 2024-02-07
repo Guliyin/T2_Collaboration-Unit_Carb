@@ -12,21 +12,21 @@ public class PlayerState_Idle : PlayerState
     public override void LogicUpdate()
     {
         if (input.Move)
-        {
-            if (input.Sprint) 
+        {;
+            if (input.Sprint && player.HasStamina)
                 stateMachine.SwitchState(typeof(PlayerState_Sprint));
             else
                 stateMachine.SwitchState(typeof(PlayerState_Move));
         }
-        if (input.Dash)
+        if (input.Dash && player.HasStamina)
         {
             stateMachine.SwitchState(typeof(PlayerState_Dash));
         }
-        if (input.LeftAttack)
+        if (input.LeftAttack && player.HasStamina)
         {
             stateMachine.SwitchState(typeof(PlayerState_LeftAttack));
         }
-        if (input.RightAttack)
+        if (input.RightAttack && player.HasStamina)
         {
             stateMachine.SwitchState(typeof(PlayerState_RightAttack));
         }

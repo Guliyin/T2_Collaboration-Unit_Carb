@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animName: PlayerState_Dash
   transitionDuration: 0.1
+  staminaCost: 25
   curve:
     serializedVersion: 2
     m_Curve:
@@ -38,4 +39,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashSpeed: 25
+  dashSpeed: 20

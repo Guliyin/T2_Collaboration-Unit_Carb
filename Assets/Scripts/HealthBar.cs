@@ -10,7 +10,6 @@ public class HealthBar : MonoBehaviour
 
     Image healthBar;
     Image damageBar;
-    HealthSystem healthSystem;
 
     private void Awake()
     {
@@ -20,11 +19,7 @@ public class HealthBar : MonoBehaviour
 
     void Start()
     {
-        healthSystem = new HealthSystem(1000);
-        SetHealth(healthSystem.NormalizedHealth);
         damagedHealthShrinkTimer = DAMAGED_HEALTH_SHRINK_TIMER_MAX;
-
-        healthSystem.OnDamaged += HealthSystem_OnDamaged;
     }
     void Update()
     {
@@ -37,22 +32,26 @@ public class HealthBar : MonoBehaviour
                 damageBar.fillAmount -= 0.5f * Time.deltaTime;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            healthSystem.Damage(10);
-        }
     }
 
-    void HealthSystem_OnDamaged(object sender, System.EventArgs e)
+    public void HealthSystem_OnDamaged(float amountNormalized)
     {
         damagedHealthShrinkTimer = DAMAGED_HEALTH_SHRINK_TIMER_MAX;
-        SetHealth(healthSystem.NormalizedHealth);
+        SetHealth(amountNormalized);
     }
 
-    void SetHealth(float healthNormalized)
+    public void HealthSystem_OnHealed(float amountNormalized)
     {
-        healthBar.fillAmount = healthNormalized;
+        if (healthBar.fillAmount >= damageBar.fillAmount)
+        {
+            damageBar.fillAmount = amountNormalized;
+        }
+        SetHealth(amountNormalized);
+    }
+
+    void SetHealth(float amountNormalized)
+    {
+        healthBar.fillAmount = amountNormalized;
     }
 
 }

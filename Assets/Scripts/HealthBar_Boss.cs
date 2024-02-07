@@ -29,7 +29,7 @@ public class HealthBar_Boss : MonoBehaviour
         SetHealth(initHealthNormalized);
     }
 
-    public void HealthSystem_OnDamaged(int health)
+    public void HealthSystem_OnDamaged(float health)
     {
         float beforeDamaged = healthBar.fillAmount;
         SetHealth((float)health / maxHealth);

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animName: PlayerMovement
   transitionDuration: 0.1
-  runSpeed: 2.5
+  runSpeed: 4
   turnRate: 10
   acceleration: 15
