@@ -3,12 +3,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "States/Player/Dash", fileName = "PlayerState_Dash")]
 public class PlayerState_Dash : PlayerState
 {
+    [SerializeField] float staminaCost;
     [SerializeField] AnimationCurve curve;
     [SerializeField] float dashSpeed;
     Vector3 dir;
     public override void Enter()
     {
         base.Enter();
+        player.DeductStamina(staminaCost);
         currentSpeed = player.MoveSpeed;
 
         if (input.moveAxes != Vector3.zero)

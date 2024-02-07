@@ -1,12 +1,14 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Player/RightAttack", fileName = "PlayerState_RightAttack")]
-public class PlayerState_RightAttack : PlayerState
+[CreateAssetMenu(menuName = "States/Player/LeftAttack", fileName = "PlayerState_LeftAttack")]
+public class PlayerState_LeftAttack : PlayerState
 {
+    [SerializeField] float staminaCost;
     [SerializeField] float deceleration = 50;
     public override void Enter()
     {
         base.Enter();
+        player.DeductStamina(staminaCost);
         currentSpeed = player.MoveSpeed;
         if (player.isLocking)
         {
@@ -23,17 +25,17 @@ public class PlayerState_RightAttack : PlayerState
         {
             input.SetAttackInputBufferTimer(2);
         }
-        if (input.Dash)
+        if (input.Dash && player.HasStamina)
         {
             stateMachine.SwitchState(typeof(PlayerState_Dash));
         }
         if (IsAnimationFinished)
         {
-            if (input.HasAttackInputBuffer == 1)
+            if (input.HasAttackInputBuffer == 1 && player.HasStamina)
             {
                 stateMachine.SwitchState(typeof(PlayerState_FastLeftAttack));
             }
-            else if (input.HasAttackInputBuffer == 2)
+            else if (input.HasAttackInputBuffer == 2 && player.HasStamina)
             {
                 stateMachine.SwitchState(typeof(PlayerState_FastRightAttack));
             }

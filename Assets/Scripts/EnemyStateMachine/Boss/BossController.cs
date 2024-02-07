@@ -8,29 +8,21 @@ public class BossController : MonoBehaviour
 
     [SerializeField] HealthBar_Boss healthBar;
 
-    HealthSystem healthSystem;
+    NumericalSystem healthSystem;
 
     private void Awake()
     {
-        healthSystem = new HealthSystem(healthMax);
+        healthSystem = new NumericalSystem(healthMax);
     }
     private void Start()
     {
-        healthBar.Init(healthSystem.NormalizedHealth, healthMax);
+        healthBar.Init(healthSystem.NormalizedAmount, healthMax);
         healthSystem.OnDamaged += OnDamaged;
     }
     void OnDamaged(object sender, System.EventArgs e)
     {
-        healthBar.HealthSystem_OnDamaged(healthSystem.Health);
-        if (healthSystem.Health == 0) print("Die");
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            healthSystem.Damage(11);
-            if (healthSystem.Health == 0) print("Die");
-        }
+        healthBar.HealthSystem_OnDamaged(healthSystem.Amount);
+        if (healthSystem.Amount == 0) print("Die");
     }
     public void Damage(int damage)
     {
