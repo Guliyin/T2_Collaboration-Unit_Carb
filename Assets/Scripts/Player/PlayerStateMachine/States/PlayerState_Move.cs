@@ -10,6 +10,9 @@ public class PlayerState_Move : PlayerState
     {
         base.Enter();
         currentSpeed = player.MoveSpeed;
+        player.LegMoving = true;
+        
+        //  player.mesh.localRotation = Quaternion.Euler(0, 90, 0);
     }
     public override void LogicUpdate()
     {
@@ -41,7 +44,14 @@ public class PlayerState_Move : PlayerState
         {
             targetRot = Quaternion.LookRotation(input.moveAxes).eulerAngles.y + player.cam.transform.rotation.eulerAngles.y;
             Quaternion rotation = Quaternion.Euler(0, targetRot, 0);
-            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, rotation, turnRate * Time.deltaTime);
+            if (player.isLocking)
+            {
+                player.transform.rotation = Quaternion.Slerp(player.transform.rotation, Quaternion.LookRotation(player.enemy.position - player.transform.position), turnRate * Time.deltaTime);
+            }
+            else
+            {
+                player.transform.rotation = Quaternion.Slerp(player.transform.rotation, rotation, turnRate * Time.deltaTime);
+            }
         }
 
         Vector3 targetDir = Quaternion.Euler(0, targetRot, 0) * Vector3.forward;
@@ -51,5 +61,10 @@ public class PlayerState_Move : PlayerState
     public override void PhysicUpdate()
     {
         player.Move(currentSpeed);
+    }
+    public override void Exit()
+    {
+        player.LegMoving = false;
+       //player.mesh.localRotation = Quaternion.Euler(0, 0, 0);
     }
 }

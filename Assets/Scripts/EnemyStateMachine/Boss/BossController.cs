@@ -21,7 +21,6 @@ public class BossController : MonoBehaviour
     }
     void OnDamaged(object sender, System.EventArgs e)
     {
-        print("?");
         healthBar.HealthSystem_OnDamaged(healthSystem.Amount);
         if (healthSystem.Amount == 0) print("Die");
     }

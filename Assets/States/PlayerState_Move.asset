@@ -15,5 +15,5 @@ MonoBehaviour:
   animName: PlayerMovement
   transitionDuration: 0.1
   runSpeed: 4
-  turnRate: 30
+  turnRate: 10
   acceleration: 15

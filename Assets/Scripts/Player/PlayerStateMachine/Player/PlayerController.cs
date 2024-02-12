@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 using DG.Tweening;
+using System.Collections;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,8 +29,35 @@ public class PlayerController : MonoBehaviour
 
     public bool isLocking { get; set; }
     public Transform enemy;
+    public Transform mesh;
 
     public bool HasStamina => numericalSystem.HasStamina;
+
+    [SerializeField] IKParameters ikParameters;
+    public Action resetLegs;
+    private bool legMoving;
+    public bool LegMoving
+    {
+        get { return legMoving; }
+        set
+        {
+            legMoving = value;
+            ikParameters.CD = LegMoving ? ikParameters.CDMove : ikParameters.CDSprint;
+        }
+    }
+    public Vector3 legDir
+    {
+        get
+        {
+            if (LegMoving)
+            {
+                float targetRot = Quaternion.LookRotation(input.moveAxes).eulerAngles.y + cam.transform.rotation.eulerAngles.y;
+                Vector3 dir = Quaternion.Euler(0, targetRot, 0) * Vector3.forward;
+                return dir;
+            }
+            else return transform.forward;
+        }
+    }
 
     private void Awake()
     {
@@ -38,6 +65,7 @@ public class PlayerController : MonoBehaviour
         input = GetComponent<PlayerInput>();
         numericalSystem = GetComponent<PlayerNumericalSystem>();
         animator = GetComponentInChildren<Animator>();
+        mesh = transform.Find("CrabMesh");
         cam = Camera.main;
     }
     private void Start()
