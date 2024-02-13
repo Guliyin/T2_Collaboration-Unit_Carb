@@ -8,6 +8,7 @@ public class PlayerState_Idle : PlayerState
     {
         base.Enter();
         currentSpeed = player.MoveSpeed;
+        player.resetLegs();
     }
     public override void LogicUpdate()
     {

@@ -28,7 +28,6 @@ public class Enemy_Behavior : MonoBehaviour
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
 
         }
-
     }
 
     private void OnTriggerEnter(Collider other)

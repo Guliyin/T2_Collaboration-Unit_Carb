@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerState_FastLeftAttack
   m_EditorClassIdentifier: 
   animName: PlayerState_FastLeftAttack
-  transitionDuration: 0.075
+  transitionDuration: 0.15
   staminaCost: 4
   deceleration: 50
   moveSpeed: 4
