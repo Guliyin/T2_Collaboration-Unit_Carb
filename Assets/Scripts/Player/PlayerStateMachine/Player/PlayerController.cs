@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     ParticleSystem dustParticle;
 
     PlayerInput input;
+    PlayerStateMachine stateMachine;
     Rigidbody rb;
     Animator animator;
     PlayerNumericalSystem numericalSystem;
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public bool HasStamina => numericalSystem.HasStamina;
 
     [SerializeField] IKParameters ikParameters;
+    [SerializeField] Rig rig;
     public Action resetLegs;
     private bool legMoving;
     public bool LegMoving
@@ -45,6 +48,8 @@ public class PlayerController : MonoBehaviour
             ikParameters.CD = LegMoving ? ikParameters.CDMove : ikParameters.CDSprint;
         }
     }
+
+    public Vector3[] fromToPosTemp;
     public Vector3 legDir
     {
         get
@@ -63,6 +68,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         input = GetComponent<PlayerInput>();
+        stateMachine = GetComponent<PlayerStateMachine>();
         numericalSystem = GetComponent<PlayerNumericalSystem>();
         animator = GetComponentInChildren<Animator>();
         mesh = transform.Find("CrabMesh");
@@ -131,6 +137,16 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(nameof(SweatAnim));
             StartCoroutine(nameof(SweatAnim));
         }
+    }
+
+    void HoleEnter(Vector3[] fromToPos)
+    {
+        fromToPosTemp = fromToPos;
+        stateMachine.SwitchState(typeof(PlayerState_HoleEnter));
+    }
+    void HoleExit()
+    {
+        print("Exit");
     }
     IEnumerator SweatAnim()
     {
