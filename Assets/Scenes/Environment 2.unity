@@ -38,7 +38,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+<<<<<<< HEAD
   m_IndirectSpecularColor: {r: 0.18122414, g: 0.18122414, b: 0.18122414, a: 1}
+=======
+  m_IndirectSpecularColor: {r: 0.18126944, g: 0.18126944, b: 0.18126944, a: 1}
+>>>>>>> beb4f22eddfbb05052489090a311b78f1781270f
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20489,6 +20493,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: holeRock
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996182545412917225, guid: a66d774040d6a704b94db18d67b69760,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8959897373186836034, guid: a66d774040d6a704b94db18d67b69760,
         type: 3}
