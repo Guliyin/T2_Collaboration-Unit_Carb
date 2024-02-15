@@ -15,7 +15,7 @@ public class PlayerState_Dive : PlayerState
     {
         if (StateDuration >= divingTime)
         {
-            stateMachine.SwitchState(typeof(PlayerState_Idle));
+            stateMachine.SwitchState(typeof(PlayerState_HoleExit));
         }
     }
     public override void Exit()

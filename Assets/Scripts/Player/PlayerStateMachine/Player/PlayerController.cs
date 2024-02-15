@@ -159,6 +159,10 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector3(horizontalVelocity.x, rb.velocity.y, horizontalVelocity.z);
     }
+    public void SetVerticalVelocity(float speed)
+    {
+        rb.velocity = new Vector3(rb.velocity.x, speed, rb.velocity.z);
+    }
     void CameraRot()
     {
         if (isLocking)
