@@ -140,7 +140,7 @@ Material:
     - _DepthHorizontal: 0.6
     - _DepthMode: 0
     - _DepthTexture: 1
-    - _DepthVertical: 5.27
+    - _DepthVertical: 1.54
     - _DisableDepthTexture: 0
     - _DistanceNormalsOn: 0
     - _DistanceNormalsTiling: 0.25
@@ -255,14 +255,14 @@ Material:
     - _ZClip: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.08736798, g: 0.13986927, b: 0.1792453, a: 0.9411765}
+    - _BaseColor: {r: 0.059629742, g: 0.10590953, b: 0.14150941, a: 0.9411765}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _DepthMapBounds: {r: -402.3, g: -459.43, b: 0.0012693577, a: 0}
     - _Direction: {r: 1, g: 1, b: 0, a: 0}
     - _DistanceNormalsFadeDist: {r: 300, g: 0.25, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0.09803922}
-    - _HorizonColor: {r: 0.023529412, g: 0.038386043, b: 0.047058824, a: 1}
+    - _HorizonColor: {r: 0.31316006, g: 0.67238593, b: 0.8584906, a: 1}
     - _IntersectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShallowColor: {r: 0.80817604, g: 0.8967103, b: 1, a: 0.39607844}
