@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Behavior : MonoBehaviour
+public class Trash_Behavior : MonoBehaviour
 {
-    public Transform target; //目标物体
+    Transform target; //目标物体
     public float moveSpeed = 5f; //速度
     public float destroyDelay = 0.1f; // 命中后延迟销毁的时间
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (target != null)
@@ -36,10 +34,15 @@ public class Enemy_Behavior : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                Destroy(gameObject,destroyDelay);
+                GameObjectPool.Instance.ReturnCacheGameObejct(gameObject);
             }
             
         }
+    }
+    public void Damage(int damage)
+    {
+        print("HIT");
+        GameObjectPool.Instance.ReturnCacheGameObejct(gameObject);
     }
 
 }

@@ -10,9 +10,12 @@ public class PlayerState_Dive : PlayerState
         base.Enter();
         player.mesh.gameObject.SetActive(false);
         player.transform.DOMove(player.fromToPosTemp[1], divingTime);
+        player.UseGravity = false;
     }
     public override void LogicUpdate()
     {
+        player.DeductStamina(0);
+
         if (StateDuration >= divingTime)
         {
             stateMachine.SwitchState(typeof(PlayerState_HoleExit));
@@ -21,5 +24,6 @@ public class PlayerState_Dive : PlayerState
     public override void Exit()
     {
         player.mesh.gameObject.SetActive(true);
+        player.UseGravity = true;
     }
 }

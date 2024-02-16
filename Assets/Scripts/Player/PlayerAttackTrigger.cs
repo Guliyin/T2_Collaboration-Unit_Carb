@@ -20,10 +20,11 @@ public class PlayerAttackTrigger : MonoBehaviour
             GameObject number = GameObjectPool.Instance.RequestCacheGameObejct(numberText, 1f);
             number.transform.position = other.ClosestPoint(transform.position);
 
-            if (other.GetComponentInParent<BossController>())
-            {
-                other.GetComponentInParent<BossController>().Damage(Damage);
-            }
+            //if (other.GetComponentInParent<BossController>())
+            //{
+            //    other.GetComponentInParent<BossController>().Damage(Damage);
+            //}
+            other.SendMessage("Damage", Damage, SendMessageOptions.DontRequireReceiver);
 
             hitEnemy();
         }

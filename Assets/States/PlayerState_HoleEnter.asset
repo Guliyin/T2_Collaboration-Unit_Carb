@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animName: PlayerState_HoleEnter
   transitionDuration: 0.1
-  jumpTime: 0.3
-  fallTime: 0.15
-  Height: 2.5
+  jumpTime: 0.25
+  fallTime: 0.2
+  Height: 1

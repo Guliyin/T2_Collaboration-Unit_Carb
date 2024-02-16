@@ -1,5 +1,5 @@
-using System;
 using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool enableHitStop;
     [Range(0, 1)]
     [SerializeField] float mouseSensitivity;
+    [Range(0, 100)]
+    [SerializeField] float extraGravity;
     [Space]
 
 
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public float verticalSpeed => rb.velocity.y;
 
     public bool isLocking { get; set; }
+    [Header("°ó¶¨ÎïÌå")]
     public Transform enemy;
     public Transform mesh;
 
@@ -49,7 +52,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public Vector3[] fromToPosTemp;
+    public Vector3[] fromToPosTemp { get; set; }
     public Vector3 legDir
     {
         get
@@ -63,6 +66,7 @@ public class PlayerController : MonoBehaviour
             else return transform.forward;
         }
     }
+    public bool UseGravity { get; set; }
 
     private void Awake()
     {
@@ -87,6 +91,8 @@ public class PlayerController : MonoBehaviour
         {
             trigger.hitEnemy += HitEnemy;
         }
+
+        UseGravity = true;
     }
     private void Update()
     {
@@ -94,9 +100,12 @@ public class PlayerController : MonoBehaviour
         {
             isLocking = !isLocking;
         }
-        if (Input.GetKeyDown(KeyCode.O))
+    }
+    private void FixedUpdate()
+    {
+        if (UseGravity)
         {
-            DeductStamina(30);
+            rb.AddForce(new Vector3(0, -extraGravity, 0));
         }
     }
     private void LateUpdate()
@@ -168,7 +177,6 @@ public class PlayerController : MonoBehaviour
         if (isLocking)
         {
             Quaternion rotation = Quaternion.LookRotation(enemy.position - cameraFollowPos.position);
-            //cameraFollowPos.rotation = rotation;
             cameraFollowPos.rotation = rotation;
             xCamRot = cameraFollowPos.rotation.eulerAngles.x;
             yCamRot = cameraFollowPos.rotation.eulerAngles.y;
@@ -177,6 +185,7 @@ public class PlayerController : MonoBehaviour
         {
             xCamRot -= input.mouseAxes.y * mouseSensitivity;
             yCamRot += input.mouseAxes.x * mouseSensitivity;
+            if (xCamRot >= 180) xCamRot -= 360;
             xCamRot = Mathf.Clamp(xCamRot, -30, 70);
             Quaternion rotation = Quaternion.Euler(xCamRot, yCamRot, 0);
             cameraFollowPos.rotation = rotation;

@@ -29,7 +29,7 @@ public class GameObjectPool : MonoSingleton<GameObjectPool>
         {
             CachePanel = new GameObject();
             CachePanel.name = "CachePanel";
-            GameObject.DontDestroyOnLoad(CachePanel);
+            DontDestroyOnLoad(CachePanel);
         }
 
         if (go == null)
@@ -58,20 +58,26 @@ public class GameObjectPool : MonoSingleton<GameObjectPool>
     /// <summary>
     /// 请求GameObject
     /// </summary>
+    /// <param name="prefab">生成的物体</param>
+    /// <param name="time">自动回收的时间，如果时间小于等于0则不会自动回收</param>
+    /// <returns></returns>
     public GameObject RequestCacheGameObejct(GameObject prefab, float time)
     {
         string tag = prefab.GetInstanceID().ToString();
         GameObject go = GetFromPool(tag);
         if (go == null)
         {
-            go = GameObject.Instantiate<GameObject>(prefab);
+            go = Instantiate(prefab);
             go.name = prefab.name + Time.time;
         }
 
 
         MarkAsOut(go, tag);
 
-        CollectObject(go, time);
+        if (time > 0)
+        {
+            CollectObject(go, time);
+        }
 
         return go;
     }
