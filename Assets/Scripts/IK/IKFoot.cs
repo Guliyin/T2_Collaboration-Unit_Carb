@@ -37,9 +37,8 @@ public class IKFoot : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, 20, 1 << 6))
         {
             var deltaDistance = Vector3.Distance(lastWorldPos, hit.point);
-            if (deltaDistance >= parameters.stepDistance)
+            if (deltaDistance >= parameters.stepDistance && parameters.stepState == Index)
             {
-                if(parameters.stepState == Index)
                     NewStep(hit.point);
             }
             else if (Vector3.Dot(lastPlayerRot, player.transform.forward) <= 0.8f)
@@ -69,7 +68,10 @@ public class IKFoot : MonoBehaviour
         Ray ray = new Ray(root.position + Quaternion.AngleAxis(player.transform.rotation.eulerAngles.y, Vector3.up) * posOffset + new Vector3(0, 10, 0), Vector3.down);
         if (Physics.Raycast(ray, out RaycastHit hit, 20, 1 << 6))
         {
-            NewStep(hit.point);
+            lerpAmount = 0;
+            curWorldPos = hit.point + new Vector3(0, posOffset.y, 0);
+            lastWorldPos = curWorldPos;
+            lastPlayerRot = player.transform.forward;
         }
     }
 }

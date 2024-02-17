@@ -13,6 +13,7 @@ public class Hole : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        print("Why");
         Vector3[] fromToPos = { transform.position, exit.transform.position };
         CoolDown();
         exit.SendMessage(nameof(CoolDown));

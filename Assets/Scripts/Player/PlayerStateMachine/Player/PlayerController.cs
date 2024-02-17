@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float mouseSensitivity;
     [Range(0, 100)]
     [SerializeField] float extraGravity;
+    [Space]
+    [Range(0, 180)]
+    [SerializeField] float lockMaxAngle;
     [Space]
 
 
@@ -32,6 +36,8 @@ public class PlayerController : MonoBehaviour
     public float verticalSpeed => rb.velocity.y;
 
     public bool isLocking { get; set; }
+    public bool isCamAnimPlaying { get; set; }
+    public bool CamAnimPlaying { get; set; }
     [Header("°ó¶¨ÎïÌå")]
     public Transform enemy;
     public Transform mesh;
@@ -98,7 +104,14 @@ public class PlayerController : MonoBehaviour
     {
         if (input.Lock)
         {
-            isLocking = !isLocking;
+            if (!isLocking)
+            {
+                LockTarget();
+            }
+            else
+            {
+                UnlockTarget();
+            }
         }
     }
     private void FixedUpdate()
@@ -111,6 +124,59 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         CameraRot();
+    }
+
+    void LockTarget()
+    {
+        enemy = GetLockTarget();
+        if (enemy == null) return;
+        PlayFocusCamAnim();
+        isLocking = true;
+    }
+    void UnlockTarget()
+    {
+        isLocking= false;
+    }
+
+    void PlayFocusCamAnim()
+    {
+        StopCoroutine(nameof(FocusCamAnim));
+        StartCoroutine(nameof(FocusCamAnim));
+    }
+    IEnumerator FocusCamAnim()
+    {
+        isCamAnimPlaying = true;
+        Quaternion to = Quaternion.LookRotation(enemy.position - cameraFollowPos.position);
+
+        float lerpAmount = 0;
+        while (lerpAmount < 1)
+        {
+            cameraFollowPos.rotation = Quaternion.Lerp(cameraFollowPos.rotation, to, lerpAmount);
+            lerpAmount += Time.deltaTime * 10f;
+            yield return null;
+        }
+        isCamAnimPlaying = false;
+    }
+
+    Transform GetLockTarget()
+    {
+        //Physics.OverlapSphere(cameraFollowPos.position,30);
+        var enemys = GameObject.FindGameObjectsWithTag("Focus");
+        float curMinDistance = 9999;
+        Transform target = null;
+        foreach (var enemy in enemys)
+        {
+            Vector3 enemyDir = enemy.transform.position - cameraFollowPos.position;
+            float distance = enemyDir.magnitude;
+            if (distance < curMinDistance)
+            {
+                float angle = Vector3.Angle(cameraFollowPos.forward, enemyDir);
+                if (angle < lockMaxAngle)
+                    target = enemy.transform;
+                    curMinDistance = distance;
+            }
+        }
+        return target;
     }
 
     public void HitEnemy()
@@ -150,13 +216,11 @@ public class PlayerController : MonoBehaviour
 
     void HoleEnter(Vector3[] fromToPos)
     {
+        print("?");
         fromToPosTemp = fromToPos;
         stateMachine.SwitchState(typeof(PlayerState_HoleEnter));
     }
-    void HoleExit()
-    {
-        print("Exit");
-    }
+
     IEnumerator SweatAnim()
     {
         sweatParticle.Play();
@@ -174,6 +238,7 @@ public class PlayerController : MonoBehaviour
     }
     void CameraRot()
     {
+        if (isCamAnimPlaying) return;
         if (isLocking)
         {
             Quaternion rotation = Quaternion.LookRotation(enemy.position - cameraFollowPos.position);

@@ -4,11 +4,12 @@ using UnityEngine;
 public class PlayerState_Idle : PlayerState
 {
     [SerializeField] float deceleration = 5;
+    bool legReset = false;
     public override void Enter()
     {
         base.Enter();
         currentSpeed = player.MoveSpeed;
-        player.resetLegs();
+        legReset = true;
     }
     public override void LogicUpdate()
     {
@@ -30,6 +31,12 @@ public class PlayerState_Idle : PlayerState
         if (input.RightAttack && player.HasStamina)
         {
             stateMachine.SwitchState(typeof(PlayerState_RightAttack));
+        }
+
+        if (legReset && currentSpeed.magnitude == 0)
+        {
+            player.resetLegs();
+            legReset = false;
         }
 
         currentSpeed = Vector3.MoveTowards(currentSpeed, Vector3.zero, deceleration * Time.deltaTime);
