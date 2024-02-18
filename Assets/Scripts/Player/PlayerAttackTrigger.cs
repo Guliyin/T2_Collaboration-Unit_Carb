@@ -24,7 +24,8 @@ public class PlayerAttackTrigger : MonoBehaviour
             //{
             //    other.GetComponentInParent<BossController>().Damage(Damage);
             //}
-            other.SendMessage("Damage", Damage, SendMessageOptions.DontRequireReceiver);
+            //other.SendMessage("Damage", Damage, SendMessageOptions.DontRequireReceiver);
+            other.SendMessageUpwards("Damage", Damage, SendMessageOptions.DontRequireReceiver);
 
             hitEnemy();
         }

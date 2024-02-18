@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isLocking { get; set; }
     public bool isCamAnimPlaying { get; set; }
-    public bool CamAnimPlaying { get; set; }
+    public bool isNextTargetPorfomed { get; set; }
     [Header("°ó¶¨ÎïÌå")]
     public Transform enemy;
     public Transform mesh;
@@ -106,11 +106,23 @@ public class PlayerController : MonoBehaviour
         {
             if (!isLocking)
             {
-                LockTarget();
+                LockTarget(GetLockTarget());
             }
             else
             {
                 UnlockTarget();
+            }
+        }
+        if (isLocking)
+        {
+            if (!isCamAnimPlaying && !isNextTargetPorfomed && (input.mouseAxes.x < -50 || input.mouseAxes.x > 50))
+            {
+                isNextTargetPorfomed = true;
+                LockTarget(GetNextTarget(input.mouseAxes.x));
+            }
+            else if (isNextTargetPorfomed && input.mouseAxes.x <= 1 && input.mouseAxes.x >= -1)
+            {
+                isNextTargetPorfomed = false;
             }
         }
     }
@@ -126,10 +138,10 @@ public class PlayerController : MonoBehaviour
         CameraRot();
     }
 
-    void LockTarget()
+    void LockTarget(Transform target)
     {
-        enemy = GetLockTarget();
-        if (enemy == null) return;
+        if (target == null) return;
+        enemy = target;
         PlayFocusCamAnim();
         isLocking = true;
     }
@@ -138,9 +150,61 @@ public class PlayerController : MonoBehaviour
         isLocking= false;
     }
 
+    Transform GetLockTarget()
+    {
+        //Physics.OverlapSphere(cameraFollowPos.position,30);
+        var enemys = GameObject.FindGameObjectsWithTag("Focus");
+        float curMinDistance = 9999;
+        Transform target = null;
+        foreach (var enemy in enemys)
+        {
+            Vector3 enemyDir = enemy.transform.position - cameraFollowPos.position;
+            float distance = enemyDir.magnitude;
+            if (distance < curMinDistance)
+            {
+                float angle = Vector3.Angle(cameraFollowPos.forward, enemyDir);
+                if (angle < lockMaxAngle)
+                {
+                    target = enemy.transform;
+                    curMinDistance = distance;
+                }
+            }
+        }
+        return target;
+    }
+    Transform GetNextTarget(float dir)
+    {
+        if (enemy == null) return null;
+
+        Vector3 right = Quaternion.AngleAxis(90, Vector3.up) * cameraFollowPos.forward;
+        var enemys = GameObject.FindGameObjectsWithTag("Focus");
+        float curMinDistance = 1;
+        Transform target = null;
+        foreach(var enemy in enemys)
+        {
+            if (enemy.transform == this.enemy) continue;
+
+            Vector3 enemyDir = enemy.transform.position - cameraFollowPos.position;
+            float angle = Vector3.Angle(cameraFollowPos.forward, enemyDir);
+            if (angle < lockMaxAngle)
+            {
+                float distance = Vector3.Dot(right.normalized, enemyDir.normalized);
+                if (distance * dir > 0)
+                {
+                    if (Mathf.Abs(distance) < curMinDistance)
+                    {
+                        target = enemy.transform;
+                        curMinDistance = Mathf.Abs(distance);
+                    }
+                }
+            }
+        }
+        return target;
+    }
+
     void PlayFocusCamAnim()
     {
-        StopCoroutine(nameof(FocusCamAnim));
+        //StopCoroutine(nameof(FocusCamAnim));
         StartCoroutine(nameof(FocusCamAnim));
     }
     IEnumerator FocusCamAnim()
@@ -158,26 +222,6 @@ public class PlayerController : MonoBehaviour
         isCamAnimPlaying = false;
     }
 
-    Transform GetLockTarget()
-    {
-        //Physics.OverlapSphere(cameraFollowPos.position,30);
-        var enemys = GameObject.FindGameObjectsWithTag("Focus");
-        float curMinDistance = 9999;
-        Transform target = null;
-        foreach (var enemy in enemys)
-        {
-            Vector3 enemyDir = enemy.transform.position - cameraFollowPos.position;
-            float distance = enemyDir.magnitude;
-            if (distance < curMinDistance)
-            {
-                float angle = Vector3.Angle(cameraFollowPos.forward, enemyDir);
-                if (angle < lockMaxAngle)
-                    target = enemy.transform;
-                    curMinDistance = distance;
-            }
-        }
-        return target;
-    }
 
     public void HitEnemy()
     {
