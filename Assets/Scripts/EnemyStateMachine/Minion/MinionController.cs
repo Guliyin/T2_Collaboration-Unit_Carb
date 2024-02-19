@@ -39,11 +39,17 @@ public class MinionController : MonoBehaviour
     void OnDamaged(object sender, System.EventArgs e)
     {
         healthBar.HealthSystem_OnDamaged(healthSystem.NormalizedAmount);
-        if (healthSystem.Amount == 0) print("Die");
     }
     public void Damage(int amount)
     {
         healthSystem.Damage(amount);
-        stateMachine.SwitchState(typeof(MinionState_Hit));
+        if (healthSystem.Amount <= 0)
+        {
+            stateMachine.SwitchState(typeof(MinionState_Dead));
+        }
+        else
+        {
+            stateMachine.SwitchState(typeof(MinionState_Hit));
+        }
     }
 }

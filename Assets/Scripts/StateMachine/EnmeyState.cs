@@ -7,7 +7,7 @@ public class EnmeyState : IState
     [SerializeField] protected string animName;
     [SerializeField, Range(0f, 1f)] protected float transitionDuration = 0.1f;
     protected int stateHash;
-    protected float stateStartTime;
+    float stateStartTime;
     protected Animator animator;
 
     protected bool IsAnimationFinished => StateDuration >= animator.GetCurrentAnimatorStateInfo(0).length;
@@ -17,7 +17,6 @@ public class EnmeyState : IState
     {
         animator.CrossFadeInFixedTime(stateHash, transitionDuration);
         stateStartTime = Time.time;
-        stateHash = Animator.StringToHash(animName);
     }
 
     public virtual void Exit() { }

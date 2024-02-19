@@ -23,5 +23,6 @@ public class MinionState : EnmeyState
         this.animator = animator;
         this.minion = minion;
         this.stateMachine = stateMachine;
+        stateHash = Animator.StringToHash(animName);
     }
 }
