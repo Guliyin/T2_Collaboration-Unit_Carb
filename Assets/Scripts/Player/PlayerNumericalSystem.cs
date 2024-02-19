@@ -23,7 +23,6 @@ public class PlayerNumericalSystem : MonoBehaviour
 
     void Start()
     {
-
         playerHealth = new NumericalSystem(MaxHealth);
         playerStamina = new NumericalSystem(MaxStamina);
     }
@@ -34,14 +33,21 @@ public class PlayerNumericalSystem : MonoBehaviour
         {
             RestoreStamina(Time.deltaTime * autoRestoreStaminaSpeed);
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            print("what");
+            Damage(11);
+        }
     }
     public void Damage(int amount)
     {
         playerHealth.Damage(amount);
+        healthBar.HealthSystem_OnDamaged(playerHealth.NormalizedAmount);
     }
     public void Heal(int amount)
     {
         playerHealth.Heal(amount);
+        healthBar.HealthSystem_OnHealed(playerHealth.NormalizedAmount);
     }
     public void DeductStamina(float amount)
     {

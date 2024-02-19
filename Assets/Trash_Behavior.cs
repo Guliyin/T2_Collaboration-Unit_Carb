@@ -24,7 +24,6 @@ public class Trash_Behavior : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime * moveSpeed);
 
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-
         }
     }
 
@@ -34,6 +33,9 @@ public class Trash_Behavior : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
+                //DamagePlayer
+                print("DealDamageToPlayer");
+                target.GetComponent<PlayerController>().UnlockTarget();
                 GameObjectPool.Instance.ReturnCacheGameObejct(gameObject);
             }
             
@@ -42,6 +44,7 @@ public class Trash_Behavior : MonoBehaviour
     public void Damage(int damage)
     {
         print("HIT");
+        target.GetComponent<PlayerController>().UnlockTarget();
         GameObjectPool.Instance.ReturnCacheGameObejct(gameObject);
     }
 

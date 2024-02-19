@@ -26,6 +26,9 @@ public class StateMachine : MonoBehaviour
     }
     public void SwitchState(System.Type newStateType)
     {
-        SwitchState(stateTable[newStateType]);
+        if (stateTable.ContainsKey(newStateType))
+            SwitchState(stateTable[newStateType]);
+        else
+            throw new UnityException(string.Format("想切换的状态{0}不在状态列表中", newStateType));
     }
 }

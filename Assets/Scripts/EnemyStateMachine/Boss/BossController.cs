@@ -28,4 +28,4 @@ public class BossController : MonoBehaviour
     {
         healthSystem.Damage(damage);
     }
-}
+} 

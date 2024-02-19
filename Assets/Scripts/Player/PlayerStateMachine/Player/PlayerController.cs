@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -39,13 +38,14 @@ public class PlayerController : MonoBehaviour
     public bool isCamAnimPlaying { get; set; }
     public bool isNextTargetPorfomed { get; set; }
     [Header("°ó¶¨ÎïÌå")]
-    public Transform enemy;
-    public Transform mesh;
+    [SerializeField] public Transform enemy;
+    [SerializeField] public Transform mesh;
+    [SerializeField] IKParameters ikParameters;
+    [SerializeField] Rig rig;
+    [SerializeField] GameObject focusImage;
 
     public bool HasStamina => numericalSystem.HasStamina;
 
-    [SerializeField] IKParameters ikParameters;
-    [SerializeField] Rig rig;
     public Action resetLegs;
     private bool legMoving;
     public bool LegMoving
@@ -143,10 +143,12 @@ public class PlayerController : MonoBehaviour
         if (target == null) return;
         enemy = target;
         PlayFocusCamAnim();
+        focusImage.SetActive(true);
         isLocking = true;
     }
-    void UnlockTarget()
+    public void UnlockTarget()
     {
+        focusImage.SetActive(false);
         isLocking= false;
     }
 
@@ -216,7 +218,10 @@ public class PlayerController : MonoBehaviour
         while (lerpAmount < 1)
         {
             cameraFollowPos.rotation = Quaternion.Lerp(cameraFollowPos.rotation, to, lerpAmount);
-            lerpAmount += Time.deltaTime * 10f;
+            lerpAmount += Time.deltaTime * 8f;
+
+            Vector3 pos = cam.WorldToScreenPoint(enemy.position);
+            focusImage.transform.position = pos;
             yield return null;
         }
         isCamAnimPlaying = false;
@@ -285,6 +290,9 @@ public class PlayerController : MonoBehaviour
         if (isCamAnimPlaying) return;
         if (isLocking)
         {
+            Vector3 pos = cam.WorldToScreenPoint(enemy.position);
+            focusImage.transform.position = pos;
+
             Quaternion rotation = Quaternion.LookRotation(enemy.position - cameraFollowPos.position);
             cameraFollowPos.rotation = rotation;
             xCamRot = cameraFollowPos.rotation.eulerAngles.x;

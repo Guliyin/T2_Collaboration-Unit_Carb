@@ -56,7 +56,7 @@ public class PlayerState_Move : PlayerState
 
         Vector3 targetDir = Quaternion.Euler(0, targetRot, 0) * Vector3.forward;
         currentSpeed = Vector3.MoveTowards(currentSpeed, targetDir.normalized * runSpeed, acceleration * Time.deltaTime);
-        animator.SetFloat("speed", currentSpeed.magnitude);
+        //animator.SetFloat("speed", currentSpeed.magnitude);
     }
     public override void PhysicUpdate()
     {

@@ -39,7 +39,7 @@ public class IKFoot : MonoBehaviour
             var deltaDistance = Vector3.Distance(lastWorldPos, hit.point);
             if (deltaDistance >= parameters.stepDistance && parameters.stepState == Index)
             {
-                    NewStep(hit.point);
+                NewStep(hit.point);
             }
             else if (Vector3.Dot(lastPlayerRot, player.transform.forward) <= 0.8f)
             {
