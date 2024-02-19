@@ -3,7 +3,72 @@ guid: 0a959e72121d8f44796a1afd93e20609
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalButton
+    second: {fileID: 2100000, guid: 2b77b4e09619e974fb3d8ee274dd29c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: belt
+    second: {fileID: 2100000, guid: f617e4cae3ff0254f8c9f73676ed8046, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body
+    second: {fileID: 2100000, guid: 5f0eba65cd4dcc1429fc36b72bd94cbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: collar
+    second: {fileID: 2100000, guid: 163ac5872a3f5ae46a0067f21e711636, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyeballs_L
+    second: {fileID: 2100000, guid: be0624b06b422f94b937ede6a549500f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyeballs_R
+    second: {fileID: 2100000, guid: 41976b7645b89364196fc14dded639f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hair1
+    second: {fileID: 2100000, guid: a84e3ed160ceea94094abfa163aba347, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hat1
+    second: {fileID: 2100000, guid: 5cea827119839e24f9af93bdc75f52e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hem
+    second: {fileID: 2100000, guid: 96d7ca499b368ae479d564634a54fb12, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: jacket
+    second: {fileID: 2100000, guid: ec87606ebc8e6674587c432050314f8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: leg1
+    second: {fileID: 2100000, guid: 118426575b578d8459de4f3b8e6c683c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shirt1
+    second: {fileID: 2100000, guid: 29312cd92896e2946b59c297eac09108, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shorts
+    second: {fileID: 2100000, guid: c63dfa2ba6af5be45aa43026b03ba591, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
