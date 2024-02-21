@@ -18,6 +18,11 @@ public class MinionState_Chase : MinionState
         minion.transform.rotation = Quaternion.Lerp(minion.transform.rotation, toRotation, Time.deltaTime * parameters.turnRate);
         minion.transform.Translate(Vector3.forward * parameters.moveSpeed * Time.deltaTime);
 
+        if (direction.magnitude <= parameters.AttackDistance)
+        {
+            stateMachine.SwitchState(typeof(MinionState_PrepareAttack));
+        }
+
 
 
         // Vector3 targetDir = minion.player.position - minion.transform.position;

@@ -12,6 +12,7 @@ public class MinionState : EnmeyState
         Initialize(animator, manager, stateMachine);
     }
 
+    protected Vector3 currentSpeed;
     protected MinionController minion;
     protected MinionStateMachine stateMachine;
     protected MinionParameters parameters;

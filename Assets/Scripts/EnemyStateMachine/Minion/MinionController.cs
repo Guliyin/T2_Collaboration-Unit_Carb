@@ -16,6 +16,7 @@ public class MinionController : MonoBehaviour
 
     [HideInInspector] public MinionParameters parameters;
     [HideInInspector] public Transform player;
+    [HideInInspector] public bool isDead;
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class MinionController : MonoBehaviour
     }
     public void Damage(int amount)
     {
+        if (isDead) return;
         healthSystem.Damage(amount);
         if (healthSystem.Amount <= 0)
         {

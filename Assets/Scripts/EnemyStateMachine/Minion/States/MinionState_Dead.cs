@@ -8,7 +8,7 @@ public class MinionState_Dead : MinionState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Dead!");
+        minion.isDead = true;
     }
     public override void LogicUpdate()
     {

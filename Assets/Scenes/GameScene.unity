@@ -258,12 +258,27 @@ PrefabInstance:
     - target: {fileID: 233125767012600272, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
         type: 3}
       propertyPath: stateNames.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 233125767012600272, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
         type: 3}
       propertyPath: stateNames.Array.data[2]
       value: MinionState_Dead
+      objectReference: {fileID: 0}
+    - target: {fileID: 233125767012600272, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
+        type: 3}
+      propertyPath: stateNames.Array.data[3]
+      value: MinionState_PrepareAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 233125767012600272, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
+        type: 3}
+      propertyPath: stateNames.Array.data[4]
+      value: MinionState_Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 233125767012600272, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
+        type: 3}
+      propertyPath: stateNames.Array.data[5]
+      value: MinionState_AfterAttack
       objectReference: {fileID: 0}
     - target: {fileID: 1462587213604746159, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
         type: 3}
@@ -274,6 +289,26 @@ PrefabInstance:
         type: 3}
       propertyPath: healthMax
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2867239731422148412, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
+        type: 3}
+      propertyPath: AttackSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2867239731422148412, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
+        type: 3}
+      propertyPath: acceleration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2867239731422148412, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
+        type: 3}
+      propertyPath: deceleration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2867239731422148412, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
+        type: 3}
+      propertyPath: AttackDistance
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2934159283833541662, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
         type: 3}
@@ -348,7 +383,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7051026080035493942, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 816630900}
   m_SourcePrefab: {fileID: 100100000, guid: af6fe481ea7430f45a1bfafa1fc01b5b, type: 3}
 --- !u!4 &66496869 stripped
 Transform:
@@ -3731,6 +3770,35 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1408456842}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &816630895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7051026080035493942, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
+    type: 3}
+  m_PrefabInstance: {fileID: 32960486}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &816630900
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816630895}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.008
+  m_Height: 0.03
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.012669245}
 --- !u!1001 &848337049
 PrefabInstance:
   m_ObjectHideFlags: 0
