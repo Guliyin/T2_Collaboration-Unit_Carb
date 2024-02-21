@@ -9,13 +9,6 @@ public class MinionState_Dead : MinionState
     {
         base.Enter();
         minion.isDead = true;
-    }
-    public override void LogicUpdate()
-    {
-        if (IsAnimationFinished)
-        {
-            minion.player.GetComponent<PlayerController>().UnlockTarget();
-            Debug.Log("ReallyDead!");
-        }
+        minion.Dead();
     }
 }

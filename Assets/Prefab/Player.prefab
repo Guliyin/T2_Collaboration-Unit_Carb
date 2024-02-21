@@ -959,7 +959,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 35
+      scalar: 25
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1397,8 +1397,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.7264151, g: 0.5107855, b: 0.30495727, a: 0.78431374}
-        key1: {r: 0.4245283, g: 0.38026762, b: 0.33842114, a: 0.5882353}
+        key0: {r: 0.7264151, g: 0.5107855, b: 0.30495727, a: 0}
+        key1: {r: 0.4245283, g: 0.38026762, b: 0.33842114, a: 0.54901963}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1637,7 +1637,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 8
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -10786,12 +10786,12 @@ MonoBehaviour:
   mouseSensitivity: 0.5
   extraGravity: 20
   lockMaxAngle: 75
-  cam: {fileID: 0}
   enemy: {fileID: 0}
   mesh: {fileID: 0}
   ikParameters: {fileID: 6933863665635699481}
   rig: {fileID: 0}
   focusImage: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!114 &8051830300840017247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10829,7 +10829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  MaxStamina: 750
+  MaxStamina: 75
   autoRestoreStaminaDelayTimer: 0.5
   autoRestoreStaminaPunishTimer: 2
   autoRestoreStaminaSpeed: 30

@@ -9,6 +9,7 @@ public class PlayerState_HoleExit : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.UseGravity = true;
         Vector3 speed = player.transform.forward * JumpSpeed;
         player.Move(speed);
         player.SetVerticalVelocity(JumpForce);
@@ -19,5 +20,10 @@ public class PlayerState_HoleExit : PlayerState
         {
             stateMachine.SwitchState(typeof(PlayerState_Idle));
         }
+    }
+    public override void Exit()
+    {
+        player.UseGravity = false;
+        player.lockedOnGround = true;
     }
 }

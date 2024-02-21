@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MinionState_AfterAttack : MinionState
@@ -7,8 +5,8 @@ public class MinionState_AfterAttack : MinionState
     public MinionState_AfterAttack(string stateName, MinionController manager, Animator animator, MinionStateMachine stateMachine) : base(stateName, manager, animator, stateMachine) { }
     public override void Enter()
     {
-        //transitionDuration = 0f;
         base.Enter();
+        currentSpeed = minion.MoveSpeed;
     }
     public override void LogicUpdate()
     {
@@ -16,9 +14,10 @@ public class MinionState_AfterAttack : MinionState
         {
             stateMachine.SwitchState(typeof(MinionState_Chase));
         }
+        currentSpeed = Vector3.MoveTowards(currentSpeed, Vector3.zero, parameters.deceleration * Time.deltaTime);
     }
-    //public override void Exit()
-    //{
-    //    transitionDuration = 0.1f;
-    //}
+    public override void PhysicUpdate()
+    {
+        minion.Move(currentSpeed);
+    }
 }

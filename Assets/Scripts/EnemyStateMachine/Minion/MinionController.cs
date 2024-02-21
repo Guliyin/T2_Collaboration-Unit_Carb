@@ -8,21 +8,29 @@ public class MinionController : MonoBehaviour
     [SerializeField] int healthMax = 30;
     [Space]
     [Header("°ó¶¨ÎïÌå")]
-    [SerializeField] HealthBar healthBar;
+    [SerializeField] Texture textutre;
+    [SerializeField] public GameObject attackArea;
 
+    HealthBar healthBar;
     NumericalSystem healthSystem;
     MinionStateMachine stateMachine;
     Rigidbody rb;
+    Material material;
+
+    public Vector3 MoveSpeed => new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
     [HideInInspector] public MinionParameters parameters;
     [HideInInspector] public Transform player;
     [HideInInspector] public bool isDead;
+
+    Transform focusPoint;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         parameters = GetComponent<MinionParameters>();
         stateMachine = GetComponent<MinionStateMachine>();
+        focusPoint = transform.Find("FoucsPoint");
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -31,7 +39,14 @@ public class MinionController : MonoBehaviour
     }
     private void Start()
     {
+        healthBar = transform.GetChild(1).Find("HP").GetComponent<HealthBar>();
+
         healthSystem.OnDamaged += OnDamaged;
+
+        var rend = GetComponentInChildren<Renderer>();
+        rend.material = new Material(Shader.Find("Shader Graphs/Minion_Dissolve"));
+        rend.material.SetTexture("_Main", textutre);
+        material = rend.material;
     }
     public void Move(Vector3 horizontalVelocity)
     {
@@ -52,6 +67,31 @@ public class MinionController : MonoBehaviour
         else
         {
             stateMachine.SwitchState(typeof(MinionState_Hit));
+        }
+    }
+    public void Dead()
+    {
+        StartCoroutine(PlayDissolveAnim());
+    }
+    IEnumerator PlayDissolveAnim()
+    {
+        focusPoint.gameObject.SetActive(false);
+        player.GetComponent<PlayerController>().NewTarget();
+        yield return new WaitForSeconds(0.15f);
+        float amount = 0;
+        while (amount <= 1)
+        {
+            amount += Time.deltaTime;
+            material.SetFloat("_DissolveAmount", amount);
+            yield return null;
+        }
+        Destroy(gameObject, 0.2f);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            player.GetComponent<PlayerController>().Damage(parameters.damage);
         }
     }
 }

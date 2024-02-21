@@ -33,11 +33,6 @@ public class PlayerNumericalSystem : MonoBehaviour
         {
             RestoreStamina(Time.deltaTime * autoRestoreStaminaSpeed);
         }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            print("what");
-            Damage(11);
-        }
     }
     public void Damage(int amount)
     {

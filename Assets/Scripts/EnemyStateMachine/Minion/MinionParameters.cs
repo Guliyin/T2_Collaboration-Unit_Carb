@@ -8,6 +8,8 @@ public class MinionParameters : MonoBehaviour
     public float deceleration;
     public float moveSpeed;
     public float turnRate;
-    public float AttackDistance;
-    public float AttackSpeed;
+    public float attackDistance;
+    public float attackSpeed;
+
+    public float damage;
 }

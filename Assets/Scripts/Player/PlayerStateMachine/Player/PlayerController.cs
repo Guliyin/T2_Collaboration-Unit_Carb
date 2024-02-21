@@ -12,10 +12,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float mouseSensitivity;
     [Range(0, 100)]
     [SerializeField] float extraGravity;
-    [Space]
     [Range(0, 180)]
     [SerializeField] float lockMaxAngle;
     [Space]
+    [Header("绑定物体")]
+    [SerializeField] public Transform enemy;
+    [SerializeField] public Transform mesh;
+    [SerializeField] IKParameters ikParameters;
+    [SerializeField] Rig rig;
+    [SerializeField] GameObject focusImage;
 
 
     Transform cameraFollowPos;
@@ -37,12 +42,8 @@ public class PlayerController : MonoBehaviour
     public bool isLocking { get; set; }
     public bool isCamAnimPlaying { get; set; }
     public bool isNextTargetPorfomed { get; set; }
-    [Header("绑定物体")]
-    [SerializeField] public Transform enemy;
-    [SerializeField] public Transform mesh;
-    [SerializeField] IKParameters ikParameters;
-    [SerializeField] Rig rig;
-    [SerializeField] GameObject focusImage;
+    public bool lockedOnGround { get; set; }
+    public bool UseGravity { get; set; }
 
     public bool HasStamina => numericalSystem.HasStamina;
 
@@ -72,7 +73,6 @@ public class PlayerController : MonoBehaviour
             else return transform.forward;
         }
     }
-    public bool UseGravity { get; set; }
 
     private void Awake()
     {
@@ -98,7 +98,8 @@ public class PlayerController : MonoBehaviour
             trigger.hitEnemy += HitEnemy;
         }
 
-        UseGravity = true;
+        UseGravity = false;
+        lockedOnGround = true;
     }
     private void Update()
     {
@@ -115,7 +116,7 @@ public class PlayerController : MonoBehaviour
         }
         if (isLocking)
         {
-            if (!isCamAnimPlaying && !isNextTargetPorfomed && (input.mouseAxes.x < -50 || input.mouseAxes.x > 50))
+            if (!isCamAnimPlaying && !isNextTargetPorfomed && (input.mouseAxes.x < -30 || input.mouseAxes.x > 30))
             {
                 isNextTargetPorfomed = true;
                 LockTarget(GetNextTarget(input.mouseAxes.x));
@@ -128,6 +129,14 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (lockedOnGround)
+        {
+            Ray ray = new Ray(transform.position + new Vector3(0, 5, 0), Vector3.down);
+            if (Physics.Raycast(ray, out RaycastHit hit, 10, 1 << 6))
+            {
+                transform.position = hit.point;
+            }
+        }
         if (UseGravity)
         {
             rb.AddForce(new Vector3(0, -extraGravity, 0));
@@ -146,10 +155,32 @@ public class PlayerController : MonoBehaviour
         focusImage.SetActive(true);
         isLocking = true;
     }
-    public void UnlockTarget()
+    void UnlockTarget()
     {
         focusImage.SetActive(false);
         isLocking= false;
+    }
+    public void NewTarget()
+    {
+        Transform target = GetNextTarget(1);
+        if (target != null)
+        {
+            LockTarget(target);
+            return;
+        }
+        else
+        {
+            target = GetNextTarget(-1);
+            if (target != null)
+            {
+                target = GetNextTarget(-1);
+                LockTarget(target);
+            }
+            else
+            {
+                UnlockTarget();
+            }
+        }
     }
 
     Transform GetLockTarget()
@@ -187,6 +218,8 @@ public class PlayerController : MonoBehaviour
             if (enemy.transform == this.enemy) continue;
 
             Vector3 enemyDir = enemy.transform.position - cameraFollowPos.position;
+            if (enemyDir.magnitude >= 10) continue;
+
             float angle = Vector3.Angle(cameraFollowPos.forward, enemyDir);
             if (angle < lockMaxAngle)
             {
@@ -212,13 +245,13 @@ public class PlayerController : MonoBehaviour
     IEnumerator FocusCamAnim()
     {
         isCamAnimPlaying = true;
-        Quaternion to = Quaternion.LookRotation(enemy.position - cameraFollowPos.position);
 
         float lerpAmount = 0;
         while (lerpAmount < 1)
         {
+            Quaternion to = Quaternion.LookRotation(enemy.position - cameraFollowPos.position);
             cameraFollowPos.rotation = Quaternion.Lerp(cameraFollowPos.rotation, to, lerpAmount);
-            lerpAmount += Time.deltaTime * 8f;
+            lerpAmount += Time.deltaTime * 5f;
 
             Vector3 pos = cam.WorldToScreenPoint(enemy.position);
             focusImage.transform.position = pos;
@@ -276,6 +309,10 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(3);
         sweatParticle.Stop();
     }
+    public void Damage(float Amount)
+    {
+        numericalSystem.Damage((int)Amount);
+    }
 
     public void Move(Vector3 horizontalVelocity)
     {
@@ -290,6 +327,10 @@ public class PlayerController : MonoBehaviour
         if (isCamAnimPlaying) return;
         if (isLocking)
         {
+            if (enemy == null)
+            {
+                NewTarget();
+            }
             Vector3 pos = cam.WorldToScreenPoint(enemy.position);
             focusImage.transform.position = pos;
 

@@ -18,6 +18,7 @@ public class PlayerState_HoleEnter : PlayerState
         sequence.Append(anim1);
         sequence.Append(anim2);
         sequence.Play();
+        player.lockedOnGround = false;
     }
     public override void LogicUpdate()
     {

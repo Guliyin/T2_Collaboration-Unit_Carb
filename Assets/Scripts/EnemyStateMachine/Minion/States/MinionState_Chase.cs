@@ -16,16 +16,16 @@ public class MinionState_Chase : MinionState
         Vector3 direction = minion.player.position - minion.transform.position;
         Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
         minion.transform.rotation = Quaternion.Lerp(minion.transform.rotation, toRotation, Time.deltaTime * parameters.turnRate);
-        minion.transform.Translate(Vector3.forward * parameters.moveSpeed * Time.deltaTime);
+        //minion.transform.Translate(Vector3.forward * parameters.moveSpeed * Time.deltaTime);
 
-        if (direction.magnitude <= parameters.AttackDistance)
+        if (direction.magnitude <= parameters.attackDistance)
         {
             stateMachine.SwitchState(typeof(MinionState_PrepareAttack));
         }
-
-
-
-        // Vector3 targetDir = minion.player.position - minion.transform.position;
-        //currentSpeed = Vector3.MoveTowards(currentSpeed, targetDir.normalized * runSpeed, acceleration * Time.deltaTime);
+        currentSpeed = Vector3.MoveTowards(currentSpeed, direction.normalized * parameters.moveSpeed, parameters.acceleration * Time.deltaTime);
+    }
+    public override void PhysicUpdate()
+    {
+        minion.Move(currentSpeed);
     }
 }
