@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
         }
         if (isLocking)
         {
-            if (!isCamAnimPlaying && !isNextTargetPorfomed && (input.mouseAxes.x < -30 || input.mouseAxes.x > 30))
+            if (!isCamAnimPlaying && !isNextTargetPorfomed && (input.mouseAxes.x < -15 || input.mouseAxes.x > 15))
             {
                 isNextTargetPorfomed = true;
                 LockTarget(GetNextTarget(input.mouseAxes.x));
@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour
             if (enemy.transform == this.enemy) continue;
 
             Vector3 enemyDir = enemy.transform.position - cameraFollowPos.position;
-            if (enemyDir.magnitude >= 10) continue;
+            if (enemyDir.magnitude >= 15) continue;
 
             float angle = Vector3.Angle(cameraFollowPos.forward, enemyDir);
             if (angle < lockMaxAngle)
@@ -312,6 +312,10 @@ public class PlayerController : MonoBehaviour
     public void Damage(float Amount)
     {
         numericalSystem.Damage((int)Amount);
+    }
+    public void Heal(float Amount)
+    {
+        numericalSystem.Heal((int)Amount);
     }
 
     public void Move(Vector3 horizontalVelocity)

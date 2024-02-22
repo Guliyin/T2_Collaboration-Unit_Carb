@@ -11,8 +11,6 @@ public class PlayerState_Move : PlayerState
         base.Enter();
         currentSpeed = player.MoveSpeed;
         player.LegMoving = true;
-        
-        //  player.mesh.localRotation = Quaternion.Euler(0, 90, 0);
     }
     public override void LogicUpdate()
     {
@@ -56,7 +54,7 @@ public class PlayerState_Move : PlayerState
 
         Vector3 targetDir = Quaternion.Euler(0, targetRot, 0) * Vector3.forward;
         currentSpeed = Vector3.MoveTowards(currentSpeed, targetDir.normalized * runSpeed, acceleration * Time.deltaTime);
-        //animator.SetFloat("speed", currentSpeed.magnitude);
+        animator.SetFloat("speed", currentSpeed.magnitude);
     }
     public override void PhysicUpdate()
     {
@@ -65,6 +63,5 @@ public class PlayerState_Move : PlayerState
     public override void Exit()
     {
         player.LegMoving = false;
-       //player.mesh.localRotation = Quaternion.Euler(0, 0, 0);
     }
 }

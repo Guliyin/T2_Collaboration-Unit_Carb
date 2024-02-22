@@ -5,12 +5,18 @@ public class PlayerState_FastRightAttack : PlayerState
 {
     [SerializeField] float staminaCost;
     [SerializeField] float deceleration = 50;
+    [SerializeField] float moveSpeed = 6;
     public override void Enter()
     {
         base.Enter();
         player.DeductStamina(staminaCost);
         input.HasAttackInputBuffer = 0;
+        player.Move(moveSpeed * player.transform.forward);
         currentSpeed = player.MoveSpeed;
+        if (player.isLocking)
+        {
+            player.transform.rotation = Quaternion.Euler(0, Quaternion.LookRotation(player.enemy.position - player.transform.position).eulerAngles.y, 0);
+        }
     }
     public override void LogicUpdate()
     {

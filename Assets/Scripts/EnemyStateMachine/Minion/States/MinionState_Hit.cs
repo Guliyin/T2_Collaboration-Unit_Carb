@@ -8,6 +8,7 @@ public class MinionState_Hit : MinionState
     public override void Enter()
     {
         base.Enter();
+        minion.transform.rotation = Quaternion.LookRotation(minion.player.position - minion.transform.position);
     }
     public override void LogicUpdate()
     {

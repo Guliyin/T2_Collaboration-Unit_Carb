@@ -76,7 +76,7 @@ public class MinionController : MonoBehaviour
     IEnumerator PlayDissolveAnim()
     {
         focusPoint.gameObject.SetActive(false);
-        player.GetComponent<PlayerController>().NewTarget();
+        if (player.GetComponent<PlayerController>().isLocking) player.GetComponent<PlayerController>().NewTarget();
         yield return new WaitForSeconds(0.15f);
         float amount = 0;
         while (amount <= 1)

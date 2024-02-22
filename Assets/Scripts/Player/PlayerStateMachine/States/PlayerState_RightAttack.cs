@@ -4,11 +4,14 @@ using UnityEngine;
 public class PlayerState_RightAttack : PlayerState
 {
     [SerializeField] float staminaCost;
-    [SerializeField] float deceleration = 50;
+    [SerializeField] float deceleration = 30;
+    [SerializeField] float moveSpeed = 6;
+    [SerializeField] float cancel = 0.5f;
     public override void Enter()
     {
         base.Enter();
         player.DeductStamina(staminaCost);
+        player.Move(moveSpeed * player.transform.forward);
         currentSpeed = player.MoveSpeed;
         if (player.isLocking)
         {
@@ -29,7 +32,7 @@ public class PlayerState_RightAttack : PlayerState
         {
             stateMachine.SwitchState(typeof(PlayerState_Dash));
         }
-        if (IsAnimationFinished)
+        if (NormalizedAnimPlayed > cancel)
         {
             if (input.HasAttackInputBuffer == 1 && player.HasStamina)
             {
@@ -39,10 +42,10 @@ public class PlayerState_RightAttack : PlayerState
             {
                 stateMachine.SwitchState(typeof(PlayerState_FastRightAttack));
             }
-            else
-            {
-                stateMachine.SwitchState(typeof(PlayerState_Idle));
-            }
+        }
+        if (IsAnimationFinished)
+        {
+            stateMachine.SwitchState(typeof(PlayerState_Idle));
         }
 
         currentSpeed = Vector3.MoveTowards(currentSpeed, Vector3.zero, deceleration * Time.deltaTime);

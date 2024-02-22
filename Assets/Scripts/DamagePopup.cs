@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class DamagePopup : MonoBehaviour
 {
@@ -9,12 +10,14 @@ public class DamagePopup : MonoBehaviour
     [SerializeField] Vector2 startSpeedRange;
     float startSpeedX;
     float startSpeedY;
-    void OnEnable()
+    public void Init(int damage)
     {
+        GetComponentInChildren<TMP_Text>().text = damage.ToString();
+
         transform.localPosition = Vector3.zero;
 
         transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
-        transform.localPosition += new Vector3(Random.Range(-posRandRange,posRandRange), Random.Range(-posRandRange, posRandRange), Random.Range(-posRandRange, posRandRange));
+        transform.localPosition += new Vector3(Random.Range(-posRandRange, posRandRange), Random.Range(-posRandRange, posRandRange), Random.Range(-posRandRange, posRandRange));
         //Invoke(nameof(Anim), 1f);
 
         startSpeedX = Random.Range(-startSpeedRange.x, startSpeedRange.x);

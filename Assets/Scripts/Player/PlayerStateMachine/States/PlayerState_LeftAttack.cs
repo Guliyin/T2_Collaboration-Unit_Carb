@@ -32,7 +32,7 @@ public class PlayerState_LeftAttack : PlayerState
         {
             stateMachine.SwitchState(typeof(PlayerState_Dash));
         }
-        if (NormalizedAnimPlayed > 0.5f)
+        if (NormalizedAnimPlayed > cancel)
         {
             if (input.HasAttackInputBuffer == 1 && player.HasStamina)
             {

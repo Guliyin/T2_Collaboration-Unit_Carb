@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerAttackTrigger : MonoBehaviour
 {
-    [SerializeField] int Damage;
+    [SerializeField] int damage;
 
     public Action hitEnemy;
     [SerializeField] GameObject bloodParticle;
@@ -19,13 +19,14 @@ public class PlayerAttackTrigger : MonoBehaviour
 
             GameObject number = GameObjectPool.Instance.RequestCacheGameObejct(numberText, 1f);
             number.transform.position = other.ClosestPoint(transform.position);
+            number.GetComponentInChildren<DamagePopup>().Init(damage);
 
             //if (other.GetComponentInParent<BossController>())
             //{
             //    other.GetComponentInParent<BossController>().Damage(Damage);
             //}
             //other.SendMessage("Damage", Damage, SendMessageOptions.DontRequireReceiver);
-            other.SendMessageUpwards("Damage", Damage, SendMessageOptions.DontRequireReceiver);
+            other.SendMessageUpwards("Damage", damage, SendMessageOptions.DontRequireReceiver);
 
             hitEnemy();
         }

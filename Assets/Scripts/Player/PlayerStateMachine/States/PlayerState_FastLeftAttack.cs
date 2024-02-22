@@ -13,6 +13,10 @@ public class PlayerState_FastLeftAttack : PlayerState
         input.HasAttackInputBuffer = 0;
         player.Move(moveSpeed * player.transform.forward);
         currentSpeed = player.MoveSpeed;
+        if (player.isLocking)
+        {
+            player.transform.rotation = Quaternion.Euler(0, Quaternion.LookRotation(player.enemy.position - player.transform.position).eulerAngles.y, 0);
+        }
     }
     public override void LogicUpdate()
     {
