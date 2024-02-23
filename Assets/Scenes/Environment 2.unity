@@ -29229,6 +29229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 1000
   healthBar: {fileID: 1260908652}
+  parameters: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &2067494277
 GameObject:
   m_ObjectHideFlags: 0
