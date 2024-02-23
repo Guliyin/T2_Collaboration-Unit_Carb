@@ -9,7 +9,9 @@ public class MinionState : EnmeyState
         animName = stateName;
         minion = manager;
         parameters = manager.parameters;
-        Initialize(animator, manager, stateMachine);
+        this.stateMachine = stateMachine;
+        this.animator = animator;
+        Initialize();
     }
 
     protected Vector3 currentSpeed;
@@ -19,11 +21,8 @@ public class MinionState : EnmeyState
 
 
 
-    public void Initialize(Animator animator, MinionController minion, MinionStateMachine stateMachine)
+    public void Initialize()
     {
-        this.animator = animator;
-        this.minion = minion;
-        this.stateMachine = stateMachine;
         stateHash = Animator.StringToHash(animName);
     }
 }

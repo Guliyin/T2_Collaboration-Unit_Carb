@@ -10629,7 +10629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9225fb6ea12c46d4482ddad5e6a4d01c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 11
+  damage: 11
   bloodParticle: {fileID: 6019205252703990205, guid: ccb3e0c0fa978f84b8b92e7b40fe5151,
     type: 3}
   numberText: {fileID: 1441114363342388343, guid: 41aab14bd20cbda4aa8af57c49377656,
@@ -10829,7 +10829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  MaxStamina: 75
+  MaxStamina: 7500
   autoRestoreStaminaDelayTimer: 0.5
   autoRestoreStaminaPunishTimer: 2
   autoRestoreStaminaSpeed: 30
@@ -11021,7 +11021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9225fb6ea12c46d4482ddad5e6a4d01c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 15
+  damage: 16
   bloodParticle: {fileID: 6019205252703990205, guid: ccb3e0c0fa978f84b8b92e7b40fe5151,
     type: 3}
   numberText: {fileID: 1441114363342388343, guid: 41aab14bd20cbda4aa8af57c49377656,
