@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,6 +19,9 @@ public class BossController : MonoBehaviour
     [HideInInspector] public BossParameters parameters;
     [HideInInspector] public Transform player;
 
+    public float agentCurSpeed => navMeshAgent.velocity.magnitude;
+    public float agentMaxSpeed => navMeshAgent.speed;
+
     enum BossAtaacks
     {
         Tread,
@@ -32,6 +36,7 @@ public class BossController : MonoBehaviour
 
         navMeshAgent = GetComponent<NavMeshAgent>();
         stateMachine = GetComponent<BossStateMachine>();
+        parameters = GetComponent<BossParameters>();
 
         stateMachine.Init();
     }
@@ -44,9 +49,15 @@ public class BossController : MonoBehaviour
     }
     public void Move(Vector3 pos)
     {
+        navMeshAgent.isStopped = false;
         navMeshAgent.SetDestination(pos);
     }
-    void OnDamaged(object sender, System.EventArgs e)
+    public void Move(bool isMoving)
+    {
+        navMeshAgent.velocity = Vector3.zero;
+        navMeshAgent.isStopped = !isMoving;
+    }
+    void OnDamaged(object sender, EventArgs e)
     {
         healthBar.HealthSystem_OnDamaged(healthSystem.Amount);
         if (healthSystem.Amount == 0) print("Die");
@@ -55,8 +66,8 @@ public class BossController : MonoBehaviour
     {
         healthSystem.Damage(damage);
     }
-    public void NextMove()
+    public Type NextMove()
     {
-
+        return typeof(BossState_Tread);
     }
 } 

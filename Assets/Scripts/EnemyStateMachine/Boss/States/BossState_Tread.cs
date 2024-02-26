@@ -6,15 +6,16 @@ public class BossState_Tread : BossState
 {
     public BossState_Tread(string stateName, BossController manager, Animator animator, BossStateMachine stateMachine) : base(stateName, manager, animator, stateMachine) { }
 
-    // Start is called before the first frame update
-    void Start()
+    public override void Enter()
     {
-        
+        base.Enter();
+        Debug.Log("Tread");
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void LogicUpdate()
     {
-        
+        if (IsAnimationFinished)
+        {
+            stateMachine.SwitchState(typeof(BossState_Chase));
+        }
     }
 }

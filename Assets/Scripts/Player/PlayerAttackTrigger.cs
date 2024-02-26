@@ -21,11 +21,6 @@ public class PlayerAttackTrigger : MonoBehaviour
             number.transform.position = other.ClosestPoint(transform.position);
             number.GetComponentInChildren<DamagePopup>().Init(damage);
 
-            //if (other.GetComponentInParent<BossController>())
-            //{
-            //    other.GetComponentInParent<BossController>().Damage(Damage);
-            //}
-            //other.SendMessage("Damage", Damage, SendMessageOptions.DontRequireReceiver);
             other.SendMessageUpwards("Damage", damage, SendMessageOptions.DontRequireReceiver);
 
             hitEnemy();

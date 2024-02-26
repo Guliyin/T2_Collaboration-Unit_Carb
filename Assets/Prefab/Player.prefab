@@ -10789,7 +10789,7 @@ MonoBehaviour:
   enemy: {fileID: 0}
   mesh: {fileID: 0}
   ikParameters: {fileID: 6933863665635699481}
-  rig: {fileID: 0}
+  rig: {fileID: 8643627517107234630}
   focusImage: {fileID: 0}
   cam: {fileID: 0}
 --- !u!114 &8051830300840017247
@@ -10816,6 +10816,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 31de793783ec0034ebbb4660d59101b3, type: 2}
   - {fileID: 11400000, guid: 714028121cdd5cb44978d87a192193f2, type: 2}
   - {fileID: 11400000, guid: 31f6960e1a8ca1d4bb7d87a48c5dd332, type: 2}
+  - {fileID: 11400000, guid: ebefe250aeac4084899d151e54956765, type: 2}
 --- !u!114 &6781682353367544167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10829,7 +10830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  MaxStamina: 7500
+  MaxStamina: 75
   autoRestoreStaminaDelayTimer: 0.5
   autoRestoreStaminaPunishTimer: 2
   autoRestoreStaminaSpeed: 30

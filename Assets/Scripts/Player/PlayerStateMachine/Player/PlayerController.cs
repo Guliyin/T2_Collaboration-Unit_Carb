@@ -312,10 +312,16 @@ public class PlayerController : MonoBehaviour
     public void Damage(float Amount)
     {
         numericalSystem.Damage((int)Amount);
+        stateMachine.SwitchState(typeof(PlayerState_Hit));
     }
     public void Heal(float Amount)
     {
         numericalSystem.Heal((int)Amount);
+    }
+
+    public void SetRigWeight(float weight)
+    {
+        rig.weight = weight;
     }
 
     public void Move(Vector3 horizontalVelocity)
@@ -325,6 +331,10 @@ public class PlayerController : MonoBehaviour
     public void SetVerticalVelocity(float speed)
     {
         rb.velocity = new Vector3(rb.velocity.x, speed, rb.velocity.z);
+    }
+    public void AddImpulse(Vector3 impulse)
+    {
+        rb.AddForce(impulse, ForceMode.Impulse);
     }
     void CameraRot()
     {

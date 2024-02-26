@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class HealthBar_Boss : MonoBehaviour
 {
-    const float BAR_WIDTH = 1500f;
+    const float BAR_WIDTH = 1300f;
 
     Image healthBar;
     TMP_Text healthText;

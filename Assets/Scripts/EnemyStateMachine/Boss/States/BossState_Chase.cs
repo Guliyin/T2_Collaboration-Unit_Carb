@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossState_Chase : BossState
@@ -19,9 +17,11 @@ public class BossState_Chase : BossState
         {
             boss.Move(boss.player.position);
         }
-    }
-    public override void PhysicUpdate()
-    {
-        
+        if (Vector3.Distance(boss.player.position, boss.transform.position) <= parameters.AttackDistance)
+        {
+            boss.Move(false);
+            stateMachine.SwitchState(boss.NextMove());
+        }
+        animator.SetFloat("Speed", boss.agentCurSpeed / boss.agentMaxSpeed);
     }
 }
