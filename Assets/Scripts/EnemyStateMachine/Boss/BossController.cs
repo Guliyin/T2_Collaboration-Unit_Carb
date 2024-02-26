@@ -18,6 +18,14 @@ public class BossController : MonoBehaviour
     [HideInInspector] public BossParameters parameters;
     [HideInInspector] public Transform player;
 
+    enum BossAtaacks
+    {
+        Tread,
+        Grab,
+        Charge,
+        Summon
+    }
+
     private void Awake()
     {
         healthSystem = new NumericalSystem(healthMax);
@@ -46,5 +54,9 @@ public class BossController : MonoBehaviour
     public void Damage(int damage)
     {
         healthSystem.Damage(damage);
+    }
+    public void NextMove()
+    {
+
     }
 } 
