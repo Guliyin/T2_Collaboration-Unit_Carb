@@ -1,0 +1,38 @@
+- Universal Rendering Pipeline.
+
+- 93 game-ready Stylized Grass assets [*fbx / 1 texture atlas (*tga)]
+
+- UVs: channel 1: overlapping; channel 2: non-overlapping (for baking lightmaps)
+
+----------------
+
+Grass Assets:
+
+- Clover + flower (8 variations+ 6 assembled models)
+- Foalfoot + flower (8 variations)
+- Plantain (8 variations)
+- Parsley (2 variations)
+- Nettle (3 variations)
+- Veronica Flower (4 variations)
+- Primrose Flower (4 variations)
+- Bluebell Flower (3 variations)
+- Grass Short (15 variations+ 6 assembled models)
+- Grass Middle (11 variations+ 5 assembled models)
+- Grass Long (5 variations+ 5 assembled models)
+
+Combine and mix it to get different meshes and fields.
+
+----------------
+
+Number of Unique Meshes: 93
+
+Collision: No
+
+Vertex Count: Min 9 - Max 3000 (check gallery pictures)
+
+Texture Resolutions: T_Plant_Grass (AO/BaseColorOpacity/MetallicSmoothness/Normal) 2048x2048 (*tga) 
+
+----------------
+
+Thank you for purchasing this pack!
+If you have any questions please write me on e-mail - letsmakecoolart@gmail.com
