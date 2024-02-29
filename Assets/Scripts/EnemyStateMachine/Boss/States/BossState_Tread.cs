@@ -17,4 +17,8 @@ public class BossState_Tread : BossState
             stateMachine.SwitchState(typeof(BossState_TreadAft));
         }
     }
+    public override void Exit()
+    {
+        boss.treadArea.gameObject.SetActive(false);
+    }
 }
