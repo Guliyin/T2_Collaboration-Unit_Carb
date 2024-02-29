@@ -36,7 +36,7 @@ public class PlayerState_FastRightAttack : PlayerState
         {
             if (input.HasAttackInputBuffer == 1 && player.HasStamina)
             {
-                stateMachine.SwitchState(typeof(PlayerState_FastLeftAttack));
+                stateMachine.SwitchState(typeof(PlayerState_FastLeftAttack1));
             }
             else if (input.HasAttackInputBuffer == 2 && player.HasStamina)
             {

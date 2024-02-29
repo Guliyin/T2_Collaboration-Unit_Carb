@@ -11,6 +11,7 @@ public class BossController : MonoBehaviour
     [Space]
     [Header("°ó¶¨ÎïÌå")]
     [SerializeField] HealthBar_Boss healthBar;
+    [SerializeField] public Transform treadArea;
 
     NumericalSystem healthSystem;
     NavMeshAgent navMeshAgent;
@@ -68,6 +69,6 @@ public class BossController : MonoBehaviour
     }
     public Type NextMove()
     {
-        return typeof(BossState_Tread);
+        return typeof(BossState_TreadPre);
     }
 } 

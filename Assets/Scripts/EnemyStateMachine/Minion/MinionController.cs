@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class MinionController : MonoBehaviour
     [HideInInspector] public MinionParameters parameters;
     [HideInInspector] public Transform player;
     [HideInInspector] public bool isDead;
+    [HideInInspector] public bool isHit;
 
     Transform focusPoint;
 
@@ -91,7 +93,8 @@ public class MinionController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            player.GetComponent<PlayerController>().Damage(parameters.damage);
+            Tuple<int, Vector3> damageInfo = new Tuple<int, Vector3>((int)parameters.damage, transform.position);
+            player.GetComponent<PlayerController>().Damage(damageInfo);
         }
     }
 }

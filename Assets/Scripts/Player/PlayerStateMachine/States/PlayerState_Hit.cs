@@ -13,7 +13,8 @@ public class PlayerState_Hit : PlayerState
     {
         base.Enter();
         player.SetRigWeight(0);
-        currentSpeed = stuntForce * player.transform.forward * -1;
+        Vector3 dir = player.DamagePos - player.transform.position;
+        currentSpeed = stuntForce * dir.normalized * -1;
     }
     public override void LogicUpdate()
     {

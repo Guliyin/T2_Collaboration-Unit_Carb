@@ -9,13 +9,12 @@ public class BossState_Tread : BossState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Tread");
     }
     public override void LogicUpdate()
     {
         if (IsAnimationFinished)
         {
-            stateMachine.SwitchState(typeof(BossState_Chase));
+            stateMachine.SwitchState(typeof(BossState_TreadAft));
         }
     }
 }

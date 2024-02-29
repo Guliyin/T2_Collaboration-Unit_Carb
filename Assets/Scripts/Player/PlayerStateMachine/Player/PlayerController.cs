@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("µ÷ÊÔÑ¡Ïî")]
     [SerializeField] bool enableHitStop;
+    [SerializeField] bool enableCameraShake;
     [Range(0, 1)]
     [SerializeField] float mouseSensitivity;
     [Range(0, 100)]
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public Camera cam;
     public Vector3 MoveSpeed => new Vector3(rb.velocity.x, 0, rb.velocity.z);
+    public Vector3 DamagePos { get; private set; }
     public float verticalSpeed => rb.velocity.y;
 
     public bool isLocking { get; set; }
@@ -268,13 +270,16 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(nameof(HitStop));
             StartCoroutine(nameof(HitStop));
         }
-        cam.DOShakePosition(0.1f, 0.075f, 3, 90, true);
+        if (enableCameraShake)
+        {
+            cam.DOShakePosition(0.1f, 0.025f, 3, 90, true);
+        }
     }
     IEnumerator HitStop()
     {
         animator.speed = 0f;
         //Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSecondsRealtime(0.075f);
         animator.speed = 1;
         //Time.timeScale = 1;
     }
@@ -309,10 +314,19 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(3);
         sweatParticle.Stop();
     }
-    public void Damage(float Amount)
+    public void Damage(Tuple<int,Vector3> Info)
     {
-        numericalSystem.Damage((int)Amount);
-        stateMachine.SwitchState(typeof(PlayerState_Hit));
+        DamagePos = Info.Item2;
+        numericalSystem.Damage(Info.Item1);
+        if (numericalSystem.HasHealth)
+        {
+            stateMachine.SwitchState(typeof(PlayerState_Hit));
+        }
+        else
+        {
+            stateMachine.SwitchState(typeof(PlayerState_Dead));
+        }
+
     }
     public void Heal(float Amount)
     {

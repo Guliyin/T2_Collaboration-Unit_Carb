@@ -18,6 +18,7 @@ public class PlayerNumericalSystem : MonoBehaviour
     NumericalSystem playerHealth;
     NumericalSystem playerStamina;
     public bool HasStamina => playerStamina.Amount > 0;
+    public bool HasHealth => playerHealth.Amount > 0;
 
     float restoreTimer;
 
