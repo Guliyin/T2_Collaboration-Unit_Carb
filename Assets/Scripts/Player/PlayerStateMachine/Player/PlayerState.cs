@@ -12,14 +12,14 @@ public class PlayerState : ScriptableObject, IState
     protected Vector3 currentSpeed;
     protected Animator animator;
     protected PlayerController player;
-    protected PlayerInput input;
+    protected CustomPlayerInput input;
     protected PlayerStateMachine stateMachine;
 
     protected bool IsAnimationFinished => StateDuration >= animator.GetCurrentAnimatorStateInfo(0).length;
     protected float StateDuration => Time.time - stateStartTime;
     protected float NormalizedAnimPlayed => StateDuration / animator.GetCurrentAnimatorStateInfo(0).length;
 
-    public void Initialize(Animator animator, PlayerController player, PlayerInput input, PlayerStateMachine stateMachine)
+    public void Initialize(Animator animator, PlayerController player, CustomPlayerInput input, PlayerStateMachine stateMachine)
     {
         this.animator = animator;
         this.player = player;

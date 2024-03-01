@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool enableCameraShake;
     [Range(0, 1)]
     [SerializeField] float mouseSensitivity;
+    [Range(15, 30)]
+    [SerializeField] float gamepadSensitivityMultiplier;
     [Range(0, 100)]
     [SerializeField] float extraGravity;
     [Range(0, 180)]
@@ -27,10 +29,25 @@ public class PlayerController : MonoBehaviour
     Transform cameraFollowPos;
     float xCamRot;
     float yCamRot;
+    float sensitivity
+    {
+        get
+        {
+            if (input.currentControlScheme == GameManager.GAMEPAD_CONTROL_SCHEME)
+            {
+                return mouseSensitivity * gamepadSensitivityMultiplier;
+            }
+            else if (input.currentControlScheme == GameManager.MNK_CONTROL_SCHEME)
+            {
+                return mouseSensitivity;
+            }
+            else return 0;
+        }
+    }
     ParticleSystem sweatParticle;
     ParticleSystem dustParticle;
 
-    PlayerInput input;
+    CustomPlayerInput input;
     PlayerStateMachine stateMachine;
     Rigidbody rb;
     Animator animator;
@@ -79,7 +96,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        input = GetComponent<PlayerInput>();
+        input = GetComponent<CustomPlayerInput>();
         stateMachine = GetComponent<PlayerStateMachine>();
         numericalSystem = GetComponent<PlayerNumericalSystem>();
         animator = GetComponentInChildren<Animator>();
@@ -88,8 +105,6 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
-        input.EnableGameplayInputs();
-
         cameraFollowPos = transform.Find("CameraFollowPos");
         sweatParticle = transform.Find("SweatParticle").GetComponent<ParticleSystem>();
         dustParticle = transform.Find("DustParticle").GetComponent<ParticleSystem>();
@@ -105,6 +120,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        print(input.mouseAxes.x);
         if (input.Lock)
         {
             if (!isLocking)
@@ -118,7 +134,9 @@ public class PlayerController : MonoBehaviour
         }
         if (isLocking)
         {
-            if (!isCamAnimPlaying && !isNextTargetPorfomed && (input.mouseAxes.x < -15 || input.mouseAxes.x > 15))
+            if (!isCamAnimPlaying && !isNextTargetPorfomed &&
+                (input.mouseAxes.x * sensitivity / mouseSensitivity <= -15
+                || input.mouseAxes.x * sensitivity / mouseSensitivity >= 15))
             {
                 isNextTargetPorfomed = true;
                 LockTarget(GetNextTarget(input.mouseAxes.x));
@@ -160,7 +178,7 @@ public class PlayerController : MonoBehaviour
     void UnlockTarget()
     {
         focusImage.SetActive(false);
-        isLocking= false;
+        isLocking = false;
     }
     public void NewTarget()
     {
@@ -215,7 +233,7 @@ public class PlayerController : MonoBehaviour
         var enemys = GameObject.FindGameObjectsWithTag("Focus");
         float curMinDistance = 1;
         Transform target = null;
-        foreach(var enemy in enemys)
+        foreach (var enemy in enemys)
         {
             if (enemy.transform == this.enemy) continue;
 
@@ -314,7 +332,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(3);
         sweatParticle.Stop();
     }
-    public void Damage(Tuple<int,Vector3> Info)
+    public void Damage(Tuple<int, Vector3> Info)
     {
         DamagePos = Info.Item2;
         numericalSystem.Damage(Info.Item1);
@@ -369,8 +387,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            xCamRot -= input.mouseAxes.y * mouseSensitivity;
-            yCamRot += input.mouseAxes.x * mouseSensitivity;
+            xCamRot -= input.mouseAxes.y * sensitivity;
+            yCamRot += input.mouseAxes.x * sensitivity;
             if (xCamRot >= 180) xCamRot -= 360;
             xCamRot = Mathf.Clamp(xCamRot, -30, 70);
             Quaternion rotation = Quaternion.Euler(xCamRot, yCamRot, 0);

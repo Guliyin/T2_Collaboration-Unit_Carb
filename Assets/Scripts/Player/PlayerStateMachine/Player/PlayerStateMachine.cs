@@ -8,11 +8,11 @@ public class PlayerStateMachine : StateMachine
 
     Animator animator;
     PlayerController player;
-    PlayerInput input;
+    CustomPlayerInput input;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        input = GetComponent<PlayerInput>();
+        input = GetComponent<CustomPlayerInput>();
         player = GetComponent<PlayerController>();
 
         stateTable = new Dictionary<System.Type, IState>(states.Length);

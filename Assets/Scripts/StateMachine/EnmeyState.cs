@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnmeyState : IState
 {
     [SerializeField] protected string animName;
-    [SerializeField, Range(0f, 1f)] protected float transitionDuration = 0.1f;
+    [SerializeField, Range(0f, 1f)] protected float transitionDuration = 0.15f;
     protected int stateHash;
     float stateStartTime;
     protected Animator animator;

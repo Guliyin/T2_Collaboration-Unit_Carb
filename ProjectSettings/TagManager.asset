@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Focus
+  - SlashCam
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

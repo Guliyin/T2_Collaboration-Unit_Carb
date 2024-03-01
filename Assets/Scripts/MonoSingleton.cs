@@ -22,12 +22,12 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
             else instance.Init();
 
             return instance;
-
         }
     }
 
     private void Awake()
     {
+        
         instance = this as T;
         Init();
     }

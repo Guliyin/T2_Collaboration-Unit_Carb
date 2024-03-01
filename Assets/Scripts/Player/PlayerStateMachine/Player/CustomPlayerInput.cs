@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerInput : MonoBehaviour
+public class CustomPlayerInput : PlayerInput
 {
     [SerializeField] float attackInputBufferTime = 0.5f;
     WaitForSeconds waitInputBufferTime;
@@ -25,24 +26,21 @@ public class PlayerInput : MonoBehaviour
     public bool RightAttack => playerInputActions.Gameplay.RightAttack.WasPressedThisFrame();
     public bool LeftAttack => playerInputActions.Gameplay.LeftAttack.WasPressedThisFrame();
     public bool Attack => RightAttack||LeftAttack;
-
     public bool Lock => playerInputActions.Gameplay.Lock.WasPerformedThisFrame();
-
     public bool Move => moveAxes.magnitude != 0f;
+    //public bool Pause => playerInputActions.Gameplay.Pause.WasPerformedThisFrame();
 
-    private void Awake()
+    private void Start()
     {
-        playerInputActions = new PlayerInputActions();
+        if (GameManager.Instance != null)
+        {
+            playerInputActions = GameManager.Instance.playerInputActions;
+        }
+        else
+        {
+            playerInputActions = new PlayerInputActions();
+        }
         waitInputBufferTime = new WaitForSeconds(attackInputBufferTime);
-    }
-    private void Update()
-    {
-
-    }
-    public void EnableGameplayInputs()
-    {
-        playerInputActions.Gameplay.Enable();
-        Cursor.lockState = CursorLockMode.Locked;
     }
     public void SetAttackInputBufferTimer(int n)
     {
