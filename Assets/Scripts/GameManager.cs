@@ -87,7 +87,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void PauseGame()
     {
         isPaused = true;
-        Time.timeScale = 0;
+        Time.timeScale = 0.1f;
         PauseUI.SetActive(true);
         DisableGameplayInputs();
     }

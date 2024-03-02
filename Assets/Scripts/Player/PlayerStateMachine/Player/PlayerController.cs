@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 DamagePos { get; private set; }
     public float verticalSpeed => rb.velocity.y;
 
+    public bool isDashing { get; set; }
     public bool isLocking { get; set; }
     public bool isCamAnimPlaying { get; set; }
     public bool isNextTargetPorfomed { get; set; }
@@ -120,7 +121,6 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        print(input.mouseAxes.x);
         if (input.Lock)
         {
             if (!isLocking)
@@ -334,6 +334,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Damage(Tuple<int, Vector3> Info)
     {
+        if (isDashing) return;
         DamagePos = Info.Item2;
         numericalSystem.Damage(Info.Item1);
         if (numericalSystem.HasHealth)

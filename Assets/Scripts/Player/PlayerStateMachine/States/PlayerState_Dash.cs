@@ -10,6 +10,7 @@ public class PlayerState_Dash : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.isDashing = true;
         player.DeductStamina(staminaCost);
         currentSpeed = player.MoveSpeed;
 
@@ -38,6 +39,7 @@ public class PlayerState_Dash : PlayerState
     }
     public override void Exit()
     {
+        player.isDashing = false;
         player.Move(currentSpeed);
     }
 }

@@ -48,6 +48,7 @@ public class MainMenu : MonoBehaviour
     }
     private void OnDestroy()
     {
-        
+        startButtons[0].onClick.RemoveListener(StartGame);
+        startButtons[3].onClick.RemoveListener(Quit);
     }
 }

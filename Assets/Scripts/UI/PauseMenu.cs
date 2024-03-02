@@ -1,28 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    //[SerializeField] Button[] Startbuttons;
+    [SerializeField] Button[] startButtons;
 
-    //void Start()
-    //{
-    //    Startbuttons[0].onClick.AddListener(GameManager.Instance.ResumeGame);
-    //    Startbuttons[3].onClick.AddListener(GameManager.Instance.LoadMenu);
-    //}
-    //void OpenSettings()
-    //{
+    void OnEnable()
+    {
+        var eventSystem = EventSystem.current;
+        eventSystem.SetSelectedGameObject(startButtons[0].gameObject);
 
-    //}
-    //void OpenControll()
-    //{
+        startButtons[0].onClick.AddListener(GameManager.Instance.ResumeGame);
+        startButtons[3].onClick.AddListener(GameManager.Instance.LoadMenu);
+    }
+    public void OpenSettings()
+    {
 
-    //}
-    //private void OnDestroy()
-    //{
-    //    Startbuttons[0].onClick.RemoveListener(GameManager.Instance.ResumeGame);
-    //    Startbuttons[3].onClick.RemoveListener(GameManager.Instance.LoadMenu);
-    //}
+    }
+    public void CloseSetting()
+    {
+
+    }
+    public void OpenControll()
+    {
+        
+    }
+    public void CloseControll()
+    {
+
+    }
+    private void OnDisable()
+    {
+        startButtons[0].onClick.RemoveListener(GameManager.Instance.ResumeGame);
+        startButtons[3].onClick.RemoveListener(GameManager.Instance.LoadMenu);
+    }
 }
