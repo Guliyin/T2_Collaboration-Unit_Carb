@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     }
     ParticleSystem sweatParticle;
     ParticleSystem dustParticle;
+    GameObject HealingParticle;
 
     CustomPlayerInput input;
     PlayerStateMachine stateMachine;
@@ -109,6 +110,7 @@ public class PlayerController : MonoBehaviour
         cameraFollowPos = transform.Find("CameraFollowPos");
         sweatParticle = transform.Find("SweatParticle").GetComponent<ParticleSystem>();
         dustParticle = transform.Find("DustParticle").GetComponent<ParticleSystem>();
+        HealingParticle = transform.Find("HealParticle").gameObject;
 
         var triggers = GetComponentsInChildren<PlayerAttackTrigger>();
         foreach (var trigger in triggers)
@@ -349,7 +351,13 @@ public class PlayerController : MonoBehaviour
     }
     public void Heal(float Amount)
     {
+        HealingParticle.SetActive(true);
         numericalSystem.Heal((int)Amount);
+        Invoke(nameof(StopHealingParticle), 1);
+    }
+    void StopHealingParticle()
+    {
+        HealingParticle.SetActive(false);
     }
 
     public void SetRigWeight(float weight)
