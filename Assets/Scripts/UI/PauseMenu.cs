@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] Button[] startButtons;
+    [SerializeField] GameObject settingStartPoint;
+    [SerializeField] GameObject controllStartPoint;
 
     void OnEnable()
     {
@@ -18,19 +20,18 @@ public class PauseMenu : MonoBehaviour
     }
     public void OpenSettings()
     {
-
-    }
-    public void CloseSetting()
-    {
-
+        var eventSystem = EventSystem.current;
+        eventSystem.SetSelectedGameObject(settingStartPoint);
     }
     public void OpenControll()
     {
-        
+        var eventSystem = EventSystem.current;ss
+        eventSystem.SetSelectedGameObject(controllStartPoint);
     }
-    public void CloseControll()
+    public void BackToMenu()
     {
-
+        var eventSystem = EventSystem.current;
+        eventSystem.SetSelectedGameObject(startButtons[0].gameObject);
     }
     private void OnDisable()
     {
