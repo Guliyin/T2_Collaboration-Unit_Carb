@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] IKParameters ikParameters;
     [SerializeField] Rig rig;
 
+    public static string GAMEPAD_CONTROL_SCHEME = "Gamepad";
+    public static string MNK_CONTROL_SCHEME = "MNK";
+    public static string CURRENT_CONTROL_SCHEME;
+    public Action<string> SwitchInput;
 
     Transform cameraFollowPos;
     float xCamRot;
@@ -34,11 +38,11 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-            if (input.currentControlScheme == GameManager.GAMEPAD_CONTROL_SCHEME)
+            if (input.currentControlScheme == GAMEPAD_CONTROL_SCHEME)
             {
                 return mouseSensitivity * gamepadSensitivityMultiplier;
             }
-            else if (input.currentControlScheme == GameManager.MNK_CONTROL_SCHEME)
+            else if (input.currentControlScheme == MNK_CONTROL_SCHEME)
             {
                 return mouseSensitivity;
             }
@@ -124,6 +128,13 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        if (input.currentControlScheme != CURRENT_CONTROL_SCHEME)
+        {
+            CURRENT_CONTROL_SCHEME = input.currentControlScheme;
+            SwitchInput(CURRENT_CONTROL_SCHEME);
+
+        }
+
         if (input.Lock)
         {
             if (!isLocking)

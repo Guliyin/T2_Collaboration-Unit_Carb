@@ -28,7 +28,6 @@ public class CustomPlayerInput : PlayerInput
     public bool Attack => RightAttack||LeftAttack;
     public bool Lock => playerInputActions.Gameplay.Lock.WasPerformedThisFrame();
     public bool Move => moveAxes.magnitude != 0f;
-    //public bool Pause => playerInputActions.Gameplay.Pause.WasPerformedThisFrame();
 
     private void Start()
     {

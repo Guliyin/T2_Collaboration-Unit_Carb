@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class BossParameters : MonoBehaviour
 {
+    [Header("Tread, Grab, GrabTwice, Summon")]
+    public int[] AbilityWeight;
+    public int AbilityTotal
+    {
+        get
+        {
+            int n = 0;
+            foreach (int i in AbilityWeight)
+            {
+                n += i;
+            }
+            return n;
+        }
+    }
+    [Space]
     public float AttackDistance;
     public float TurnRate;
 }

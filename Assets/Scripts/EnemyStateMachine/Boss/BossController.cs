@@ -10,9 +10,9 @@ public class BossController : MonoBehaviour
     [SerializeField] int healthMax = 1000;
     [Space]
     [Header("°ó¶¨ÎïÌå")]
-    [SerializeField] HealthBar_Boss healthBar;
     [SerializeField] public Transform treadArea;
 
+    HealthBar_Boss healthBar;
     NumericalSystem healthSystem;
     NavMeshAgent navMeshAgent;
     BossStateMachine stateMachine;
@@ -22,14 +22,6 @@ public class BossController : MonoBehaviour
 
     public float agentCurSpeed => navMeshAgent.velocity.magnitude;
     public float agentMaxSpeed => navMeshAgent.speed;
-
-    enum BossAtaacks
-    {
-        Tread,
-        Grab,
-        Charge,
-        Summon
-    }
 
     private void Awake()
     {
@@ -43,10 +35,14 @@ public class BossController : MonoBehaviour
     }
     private void Start()
     {
+        GameObject.Find("GameUI").transform.GetChild(3).gameObject.SetActive(true);
+        healthBar = FindObjectOfType<HealthBar_Boss>();
         healthBar.Init(healthSystem.NormalizedAmount, healthMax);
         healthSystem.OnDamaged += OnDamaged;
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (player == null) print("null");
+        else print("bu null");
     }
     public void Move(Vector3 pos)
     {
@@ -69,6 +65,35 @@ public class BossController : MonoBehaviour
     }
     public Type NextMove()
     {
-        return typeof(BossState_TreadPre);
+        int rand = UnityEngine.Random.Range(1, parameters.AbilityTotal);
+        int temp = 0;
+        int output = 0;
+
+        for (int i = 0; i < parameters.AbilityWeight.Length; i++)
+        {
+            temp += parameters.AbilityWeight[i];
+            if (rand < temp)
+            {
+                output = i;
+            }
+        }
+
+        switch (output)
+        {
+            case 0:
+                return typeof(BossState_Tread);
+            case 1:
+                return typeof(BossState_Summon);
+            case 2:
+                return typeof(BossState_Tread);
+            case 3:
+                return typeof(BossState_Summon);
+            case 4:
+                return typeof(BossState_Tread);
+            default:
+                return typeof(BossState_Tread);
+        }
+
+        //return typeof(BossState_TreadPre);
     }
-} 
+}

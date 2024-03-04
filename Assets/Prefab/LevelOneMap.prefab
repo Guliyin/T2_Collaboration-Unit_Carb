@@ -1657,6 +1657,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trash
       objectReference: {fileID: 0}
+    - target: {fileID: 1918518139247797424, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
+        type: 3}
+      propertyPath: isSpecial
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6486656963949945957, guid: af6fe481ea7430f45a1bfafa1fc01b5b,
         type: 3}
       propertyPath: m_RootOrder

@@ -18,6 +18,11 @@ public class MainMenu : MonoBehaviour
         startButtons[0].onClick.AddListener(StartGame);
         startButtons[3].onClick.AddListener(Quit);
     }
+    public void SetFocus(GameObject go)
+    {
+        var eventSystem = EventSystem.current;
+        eventSystem.SetSelectedGameObject(go);
+    }
     public void StartGame()
     {
         GameManager.Instance.LoadLevelOne();

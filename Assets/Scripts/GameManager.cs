@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public static string GAMEPAD_CONTROL_SCHEME = "Gamepad";
-    public static string MNK_CONTROL_SCHEME = "MNK";
 
     [HideInInspector] public PlayerInputActions playerInputActions;
     GameObject PauseUI;
@@ -105,6 +103,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void LoadMenu()
     {
         SceneManager.LoadScene(0);
+        curPhase = GamePhase.Menu;
     }
     public void LoadLevelOne()
     {
@@ -120,6 +119,7 @@ public class GameManager : MonoSingleton<GameManager>
         {
             PauseUI = GameObject.FindGameObjectWithTag("PauseMenu");
             Instantiate(levels[0]);
+            curPhase = GamePhase.LevelOne;
             ResumeGame();
         }
 
@@ -128,11 +128,13 @@ public class GameManager : MonoSingleton<GameManager>
     }
     public void LoadLevelTwo()
     {
-        Debug.Log("第二关启动");
+        Instantiate(levels[1]);
+        curPhase = GamePhase.LevelTwo;
     }
     public void LoadLevelThree()
     {
-
+        Instantiate(levels[2]);
+        curPhase = GamePhase.LevelThree;
     }
     private void OnDisable()
     {

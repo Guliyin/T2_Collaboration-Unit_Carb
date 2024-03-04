@@ -7,6 +7,7 @@ public class MinionController : MonoBehaviour
 {
     [Header("调试选项")]
     [SerializeField] int healthMax = 30;
+    [SerializeField] bool isSpecial;
     [Space]
     [Header("绑定物体")]
     [SerializeField] Texture textutre;
@@ -88,7 +89,10 @@ public class MinionController : MonoBehaviour
             material.SetFloat("_DissolveAmount", amount);
             yield return null;
         }
-        Die();
+        if (isSpecial)
+        {
+            Die();
+        }
         Destroy(gameObject, 0.2f);
     }
     private void OnTriggerEnter(Collider other)
