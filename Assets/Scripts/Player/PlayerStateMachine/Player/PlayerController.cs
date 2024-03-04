@@ -21,9 +21,10 @@ public class PlayerController : MonoBehaviour
     [Header("°ó¶¨ÎïÌå")]
     [SerializeField] public Transform enemy;
     [SerializeField] public Transform mesh;
+    [SerializeField] GameObject focusImage;
+    [SerializeField] PlayerAttackTrigger[] triggers;
     [SerializeField] IKParameters ikParameters;
     [SerializeField] Rig rig;
-    [SerializeField] GameObject focusImage;
 
 
     Transform cameraFollowPos;
@@ -137,8 +138,8 @@ public class PlayerController : MonoBehaviour
         if (isLocking)
         {
             if (!isCamAnimPlaying && !isNextTargetPorfomed &&
-                (input.mouseAxes.x * sensitivity / mouseSensitivity <= -15
-                || input.mouseAxes.x * sensitivity / mouseSensitivity >= 15))
+                (input.mouseAxes.x * sensitivity / mouseSensitivity <= -14
+                || input.mouseAxes.x * sensitivity / mouseSensitivity >= 14))
             {
                 isNextTargetPorfomed = true;
                 LockTarget(GetNextTarget(input.mouseAxes.x));
@@ -299,9 +300,16 @@ public class PlayerController : MonoBehaviour
     {
         animator.speed = 0f;
         //Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(0.075f);
+        yield return new WaitForSecondsRealtime(0.1f);
         animator.speed = 1;
         //Time.timeScale = 1;
+    }
+    public void ClearHitCache()
+    {
+        foreach(var t in triggers)
+        {
+            t.ClearColliderCache();
+        }
     }
 
     public void DustAnim(bool play)

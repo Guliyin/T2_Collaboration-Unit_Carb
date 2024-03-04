@@ -55,4 +55,8 @@ public class PlayerState_RightAttack : PlayerState
     {
         player.Move(currentSpeed);
     }
+    public override void Exit()
+    {
+        player.ClearHitCache();
+    }
 }

@@ -57,4 +57,8 @@ public class PlayerState_FastLeftAttack2 : PlayerState
     {
         player.Move(currentSpeed);
     }
+    public override void Exit()
+    {
+        player.ClearHitCache();
+    }
 }

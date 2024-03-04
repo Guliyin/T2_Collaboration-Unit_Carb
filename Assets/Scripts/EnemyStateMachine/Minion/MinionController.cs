@@ -20,6 +20,7 @@ public class MinionController : MonoBehaviour
 
     public Vector3 MoveSpeed => new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
+    public Action Die;
     [HideInInspector] public MinionParameters parameters;
     [HideInInspector] public Transform player;
     [HideInInspector] public bool isDead;
@@ -79,7 +80,7 @@ public class MinionController : MonoBehaviour
     {
         focusPoint.gameObject.SetActive(false);
         if (player.GetComponent<PlayerController>().isLocking) player.GetComponent<PlayerController>().NewTarget();
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(1f);
         float amount = 0;
         while (amount <= 1)
         {
@@ -87,6 +88,7 @@ public class MinionController : MonoBehaviour
             material.SetFloat("_DissolveAmount", amount);
             yield return null;
         }
+        Die();
         Destroy(gameObject, 0.2f);
     }
     private void OnTriggerEnter(Collider other)

@@ -10,10 +10,16 @@ public class PlayerAttackTrigger : MonoBehaviour
     public Action hitEnemy;
     [SerializeField] GameObject bloodParticle;
     [SerializeField] GameObject numberText;
+
+    List<GameObject> hitObjects = new List<GameObject>();
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
+            if (hitObjects.Contains(other.gameObject)) return;
+            hitObjects.Add(other.gameObject);
+
             GameObject blood = GameObjectPool.Instance.RequestCacheGameObejct(bloodParticle, 1f);
             blood.transform.position = other.ClosestPoint(transform.position);
 
@@ -25,5 +31,9 @@ public class PlayerAttackTrigger : MonoBehaviour
 
             hitEnemy();
         }
+    }
+    public void ClearColliderCache()
+    {
+        hitObjects.Clear();
     }
 }

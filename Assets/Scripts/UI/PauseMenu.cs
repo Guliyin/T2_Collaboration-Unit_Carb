@@ -16,7 +16,8 @@ public class PauseMenu : MonoBehaviour
         eventSystem.SetSelectedGameObject(startButtons[0].gameObject);
 
         startButtons[0].onClick.AddListener(GameManager.Instance.ResumeGame);
-        startButtons[3].onClick.AddListener(GameManager.Instance.LoadMenu);
+        startButtons[3].onClick.AddListener(GameManager.Instance.ResetPlayerPos);
+        startButtons[4].onClick.AddListener(GameManager.Instance.LoadMenu);
     }
     public void OpenSettings()
     {
@@ -25,7 +26,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void OpenControll()
     {
-        var eventSystem = EventSystem.current;ss
+        var eventSystem = EventSystem.current;
         eventSystem.SetSelectedGameObject(controllStartPoint);
     }
     public void BackToMenu()
@@ -36,6 +37,7 @@ public class PauseMenu : MonoBehaviour
     private void OnDisable()
     {
         startButtons[0].onClick.RemoveListener(GameManager.Instance.ResumeGame);
-        startButtons[3].onClick.RemoveListener(GameManager.Instance.LoadMenu);
+        startButtons[3].onClick.RemoveListener(GameManager.Instance.ResetPlayerPos);
+        startButtons[4].onClick.RemoveListener(GameManager.Instance.LoadMenu);
     }
 }

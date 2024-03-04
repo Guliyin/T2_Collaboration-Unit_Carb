@@ -25,6 +25,6 @@ public class MinionStateMachine : StateMachine
     }
     private void Start()
     {
-        SwitchOn(stateTable[typeof(MinionState_Chase)]);
+        SwitchOn(stateTable[typeof(MinionState_Born)]);
     }
 }

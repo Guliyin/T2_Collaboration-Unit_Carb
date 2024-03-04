@@ -11,6 +11,8 @@ public class GameManager : MonoSingleton<GameManager>
     [HideInInspector] public PlayerInputActions playerInputActions;
     GameObject PauseUI;
 
+    [SerializeField] GameObject[] levels;
+
     private bool isPaused;
     private void Awake()
     {
@@ -41,6 +43,7 @@ public class GameManager : MonoSingleton<GameManager>
         else
         {
             EnableGameplayInputs();
+            LoadLevelOne();
         }
 
         curPhase = GamePhase.Menu;
@@ -91,6 +94,10 @@ public class GameManager : MonoSingleton<GameManager>
         PauseUI.SetActive(true);
         DisableGameplayInputs();
     }
+    public void ResetPlayerPos()
+    {
+
+    }
     public void ReloadCurrentLevel()
     {
         print("Restart");
@@ -112,6 +119,7 @@ public class GameManager : MonoSingleton<GameManager>
         else if(SceneManager.GetActiveScene().buildIndex == 1)
         {
             PauseUI = GameObject.FindGameObjectWithTag("PauseMenu");
+            Instantiate(levels[0]);
             ResumeGame();
         }
 
@@ -120,7 +128,7 @@ public class GameManager : MonoSingleton<GameManager>
     }
     public void LoadLevelTwo()
     {
-
+        Debug.Log("第二关启动");
     }
     public void LoadLevelThree()
     {
