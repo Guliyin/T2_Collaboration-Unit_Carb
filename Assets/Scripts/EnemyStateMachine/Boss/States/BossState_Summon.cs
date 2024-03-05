@@ -10,4 +10,12 @@ public class BossState_Summon : BossState
     {
         base.Enter();
     }
+    public override void LogicUpdate()
+    {
+        if (IsAnimationFinished)
+        {
+            stateMachine.SwitchState(typeof(BossState_Chase));
+        }
+
+    }
 }

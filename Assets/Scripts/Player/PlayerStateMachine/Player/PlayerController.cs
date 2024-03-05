@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool enableHitStop;
     [SerializeField] bool enableCameraShake;
     [Range(0, 1)]
-    [SerializeField] float mouseSensitivity;
+    [SerializeField] float mouseSensitivity = 0.5f;
     [Range(15, 30)]
     [SerializeField] float gamepadSensitivityMultiplier;
     [Range(0, 100)]
@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     public static string GAMEPAD_CONTROL_SCHEME = "Gamepad";
     public static string MNK_CONTROL_SCHEME = "MNK";
     public static string CURRENT_CONTROL_SCHEME;
-    public Action<string> SwitchInput;
 
     Transform cameraFollowPos;
     float xCamRot;
@@ -128,13 +127,6 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        if (input.currentControlScheme != CURRENT_CONTROL_SCHEME)
-        {
-            CURRENT_CONTROL_SCHEME = input.currentControlScheme;
-            SwitchInput(CURRENT_CONTROL_SCHEME);
-
-        }
-
         if (input.Lock)
         {
             if (!isLocking)

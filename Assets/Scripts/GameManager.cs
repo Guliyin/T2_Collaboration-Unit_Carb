@@ -38,10 +38,18 @@ public class GameManager : MonoSingleton<GameManager>
         {
             DisableGameplayInputs();
         }
-        else
+        else if(SceneManager.GetActiveScene().buildIndex == 1)
         {
             EnableGameplayInputs();
             LoadLevelOne();
+        }
+        else
+        {
+            EnableGameplayInputs();
+            PauseUI = GameObject.FindGameObjectWithTag("PauseMenu");
+            Instantiate(levels[0]);
+            curPhase = GamePhase.LevelOne;
+            ResumeGame();
         }
 
         curPhase = GamePhase.Menu;
