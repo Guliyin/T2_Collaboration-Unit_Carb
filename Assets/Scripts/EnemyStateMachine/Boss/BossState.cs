@@ -23,4 +23,9 @@ public class BossState : EnmeyState
     {
         stateHash = Animator.StringToHash(animName);
     }
+    public override void Enter()
+    {
+        base.Enter();
+        Debug.Log(animName);
+    }
 }

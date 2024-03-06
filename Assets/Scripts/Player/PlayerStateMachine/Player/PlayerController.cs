@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-            if (LegMoving)
+            if (LegMoving && input.moveAxes != Vector3.zero)
             {
                 float targetRot = Quaternion.LookRotation(input.moveAxes).eulerAngles.y + cam.transform.rotation.eulerAngles.y;
                 Vector3 dir = Quaternion.Euler(0, targetRot, 0) * Vector3.forward;
@@ -342,7 +342,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator SweatAnim()
     {
         sweatParticle.Play();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         sweatParticle.Stop();
     }
     public void Damage(Tuple<int, Vector3> Info)

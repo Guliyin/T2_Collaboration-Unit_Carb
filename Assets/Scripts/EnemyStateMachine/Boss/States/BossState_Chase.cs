@@ -15,9 +15,15 @@ public class BossState_Chase : BossState
         timer += Time.deltaTime;
         if (timer >= 1)
         {
-            boss.Move(boss.player.position);
+            boss.Move(parameters.MoveSpeed, boss.player.position);
         }
-        if (Vector3.Distance(boss.player.position, boss.transform.position) <= parameters.AttackDistance)
+
+        Vector3 dir = boss.player.position - boss.transform.position;
+        if (dir.magnitude > 35)
+        {
+            stateMachine.SwitchState(typeof(BossState_Charge));
+        }
+        if (dir.magnitude <= parameters.AttackDistance)
         {
             boss.Move(false);
             stateMachine.SwitchState(boss.NextMove());

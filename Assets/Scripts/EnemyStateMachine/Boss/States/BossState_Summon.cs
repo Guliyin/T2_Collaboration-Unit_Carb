@@ -9,6 +9,7 @@ public class BossState_Summon : BossState
     public override void Enter()
     {
         base.Enter();
+        boss.SpawnTrash();
     }
     public override void LogicUpdate()
     {

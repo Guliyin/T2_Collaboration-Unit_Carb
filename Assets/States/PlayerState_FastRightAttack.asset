@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animName: PlayerState_FastRightAttack
   transitionDuration: 0.1
-  staminaCost: 4
+  staminaCost: 1
   deceleration: 50
+  moveSpeed: 6

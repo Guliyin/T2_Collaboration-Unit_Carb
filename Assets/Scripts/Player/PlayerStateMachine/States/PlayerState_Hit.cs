@@ -19,7 +19,7 @@ public class PlayerState_Hit : PlayerState
     public override void LogicUpdate()
     {
         player.DeductStamina(0);
-        if (StateDuration >= stuntTime)
+        if (IsAnimationFinished)
         {
             stateMachine.SwitchState(typeof(PlayerState_Idle));
         }

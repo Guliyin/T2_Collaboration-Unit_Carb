@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animName: PlayerState_Hit
   transitionDuration: 0.1
-  stuntTime: 0.3
+  stuntTime: 1
   stuntForce: 15
   deceleration: 30

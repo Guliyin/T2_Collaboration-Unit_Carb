@@ -19,6 +19,10 @@ public class BossParameters : MonoBehaviour
         }
     }
     [Space]
+    public float MoveSpeed;
     public float AttackDistance;
     public float TurnRate;
+    public float ChargeDistance;
+    public float CharageSpeed;
+    public float ChargeMaxTime;
 }

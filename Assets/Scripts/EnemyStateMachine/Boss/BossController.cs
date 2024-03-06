@@ -11,6 +11,8 @@ public class BossController : MonoBehaviour
     [Space]
     [Header("°ó¶¨ÎïÌå")]
     [SerializeField] public Transform treadArea;
+    [SerializeField] public Transform SpawnPos;
+    [SerializeField] public GameObject trash;
 
     HealthBar_Boss healthBar;
     NumericalSystem healthSystem;
@@ -41,18 +43,26 @@ public class BossController : MonoBehaviour
         healthSystem.OnDamaged += OnDamaged;
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        if (player == null) print("null");
-        else print("bu null");
     }
-    public void Move(Vector3 pos)
+    private void Update()
+    {
+        //print(navMeshAgent.velocity.magnitude);
+    }
+    public bool Move(Vector3 pos)
     {
         navMeshAgent.isStopped = false;
-        navMeshAgent.SetDestination(pos);
+        return navMeshAgent.SetDestination(pos);
     }
     public void Move(bool isMoving)
     {
         navMeshAgent.velocity = Vector3.zero;
         navMeshAgent.isStopped = !isMoving;
+    }
+    public bool Move(float speed, Vector3 pos)
+    {
+        navMeshAgent.isStopped = false;
+        navMeshAgent.speed = speed;
+        return navMeshAgent.SetDestination(pos);
     }
     void OnDamaged(object sender, EventArgs e)
     {
@@ -62,6 +72,10 @@ public class BossController : MonoBehaviour
     public void Damage(int damage)
     {
         healthSystem.Damage(damage);
+        if (healthSystem.Amount <= 0)
+        {
+            stateMachine.SwitchState(typeof(BossState_Dead));
+        }
     }
     public Type NextMove()
     {
@@ -75,25 +89,29 @@ public class BossController : MonoBehaviour
             if (rand < temp)
             {
                 output = i;
+                break;
             }
         }
 
         switch (output)
         {
             case 0:
-                return typeof(BossState_Tread);
+                return typeof(BossState_TreadPre);
             case 1:
                 return typeof(BossState_Summon);
             case 2:
-                return typeof(BossState_Tread);
+                return typeof(BossState_TreadPre);
             case 3:
                 return typeof(BossState_Summon);
             case 4:
-                return typeof(BossState_Tread);
+                return typeof(BossState_TreadPre);
             default:
-                return typeof(BossState_Tread);
+                return typeof(BossState_TreadPre);
         }
-
-        //return typeof(BossState_TreadPre);
+    }
+    public void SpawnTrash()
+    {
+        Instantiate(trash, SpawnPos.GetChild(0).transform.position, Quaternion.identity);
+        Instantiate(trash, SpawnPos.GetChild(1).transform.position, Quaternion.identity);
     }
 }

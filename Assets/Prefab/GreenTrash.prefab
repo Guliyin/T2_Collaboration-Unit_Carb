@@ -38,7 +38,7 @@ Transform:
   - {fileID: 8923938529609134821}
   - {fileID: 5301528047946001018}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2934159283833541662
 Rigidbody:
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthMax: 30
+  isSpecial: 0
   textutre: {fileID: 2800000, guid: 56fec393af632be47a2d0a4c73cca65d, type: 3}
   attackArea: {fileID: 5463991459155673500}
   parameters: {fileID: 0}
@@ -499,7 +500,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5463991459155673500}
   m_LocalRotation: {x: 0.7071067, y: 0.000000029802319, z: -0.000000029802319, w: 0.70710695}
-  m_LocalPosition: {x: 0, y: 1.4250002, z: 0.546}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
