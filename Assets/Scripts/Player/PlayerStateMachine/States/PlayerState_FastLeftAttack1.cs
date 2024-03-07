@@ -9,7 +9,7 @@ public class PlayerState_FastLeftAttack1 : PlayerState
     public override void Enter()
     {
         base.Enter();
-        player.DeductStamina(staminaCost);
+        //player.DeductStamina(staminaCost);
         input.HasAttackInputBuffer = 0;
         player.Move(moveSpeed * player.transform.forward);
         currentSpeed = player.MoveSpeed;

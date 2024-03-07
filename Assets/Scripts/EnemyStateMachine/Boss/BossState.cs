@@ -26,6 +26,5 @@ public class BossState : EnmeyState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log(animName);
     }
 }

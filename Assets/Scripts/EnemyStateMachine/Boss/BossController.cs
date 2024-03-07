@@ -98,9 +98,9 @@ public class BossController : MonoBehaviour
             case 0:
                 return typeof(BossState_TreadPre);
             case 1:
-                return typeof(BossState_Summon);
+                return typeof(BossState_Grab);
             case 2:
-                return typeof(BossState_TreadPre);
+                return typeof(BossState_GrabTwice);
             case 3:
                 return typeof(BossState_Summon);
             case 4:

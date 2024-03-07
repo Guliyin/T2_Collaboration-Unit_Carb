@@ -14,7 +14,6 @@ public class BossState_Stun : BossState
     {
         if (IsAnimationFinished)
         {
-            Debug.Log("FINISH");
             Vector3 dir = boss.player.position - boss.transform.position;
             if (dir.magnitude > 35)
             {

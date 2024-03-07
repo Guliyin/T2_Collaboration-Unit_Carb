@@ -10,7 +10,7 @@ public class PlayerState_LeftAttack : PlayerState
     public override void Enter()
     {
         base.Enter();
-        player.DeductStamina(staminaCost);
+        //player.DeductStamina(staminaCost);
         player.Move(moveSpeed * player.transform.forward);
         currentSpeed = player.MoveSpeed;
         if (player.isLocking)

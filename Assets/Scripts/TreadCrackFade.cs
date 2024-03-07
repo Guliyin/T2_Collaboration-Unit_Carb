@@ -8,7 +8,6 @@ public class TreadCrackFade : MonoBehaviour
 {
     DecalProjector decal;
 
-    // Start is called before the first frame update
     void Awake()
     {
         decal = GetComponent<DecalProjector>();

@@ -19,7 +19,7 @@ public class BossState_Chase : BossState
         }
 
         Vector3 dir = boss.player.position - boss.transform.position;
-        if (dir.magnitude > 35)
+        if (dir.magnitude > parameters.ChargeDistance)
         {
             stateMachine.SwitchState(typeof(BossState_Charge));
         }

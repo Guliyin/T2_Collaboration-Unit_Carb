@@ -19,6 +19,11 @@ public class PauseMenu : MonoBehaviour
         startButtons[3].onClick.AddListener(GameManager.Instance.ResetPlayerPos);
         startButtons[4].onClick.AddListener(GameManager.Instance.LoadMenu);
     }
+    public void SetFocus(GameObject go)
+    {
+        var eventSystem = EventSystem.current;
+        eventSystem.SetSelectedGameObject(go);
+    }
     public void OpenSettings()
     {
         var eventSystem = EventSystem.current;

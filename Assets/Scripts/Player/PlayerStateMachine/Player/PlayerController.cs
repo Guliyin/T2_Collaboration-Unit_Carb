@@ -19,8 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float lockMaxAngle;
     [Space]
     [Header("°ó¶¨ÎïÌå")]
-    [SerializeField] public Transform enemy;
-    [SerializeField] public Transform mesh;
+    
     [SerializeField] GameObject focusImage;
     [SerializeField] PlayerAttackTrigger[] triggers;
     [SerializeField] IKParameters ikParameters;
@@ -59,6 +58,8 @@ public class PlayerController : MonoBehaviour
     PlayerNumericalSystem numericalSystem;
 
     [HideInInspector] public Camera cam;
+    [HideInInspector] public Transform mesh;
+    [HideInInspector] public Transform enemy;
     public Vector3 MoveSpeed => new Vector3(rb.velocity.x, 0, rb.velocity.z);
     public Vector3 DamagePos { get; private set; }
     public float verticalSpeed => rb.velocity.y;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animName: PlayerMovement
   transitionDuration: 0.1
-  staminaCost: 4
+  staminaCost: 10
   sprintSpeed: 8
   turnRate: 30
   acceleration: 50

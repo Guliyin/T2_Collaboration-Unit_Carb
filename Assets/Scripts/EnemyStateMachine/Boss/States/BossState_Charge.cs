@@ -10,7 +10,8 @@ public class BossState_Charge : BossState
     public override void Enter()
     {
         base.Enter();
-        destination = boss.player.position;
+        Vector3 chargeDir = boss.player.position - boss.transform.position;
+        destination = boss.transform.position + chargeDir + chargeDir.normalized * 15;
         boss.Move(parameters.CharageSpeed, destination);
     }
     public override void LogicUpdate()
