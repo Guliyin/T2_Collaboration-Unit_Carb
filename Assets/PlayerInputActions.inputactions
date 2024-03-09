@@ -191,6 +191,17 @@
                 },
                 {
                     "name": "",
+                    "id": "9221024a-f75c-4dfa-884c-0ce9929e1630",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ad3f8237-732b-42b4-b3ce-cc069a38d72f",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
@@ -248,6 +259,17 @@
                     "name": "",
                     "id": "078f1e72-26db-4a08-a786-01f4773caee1",
                     "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Lock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "269859ec-2c0c-4571-90d8-150412ed044a",
+                    "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",

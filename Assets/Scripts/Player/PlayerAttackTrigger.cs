@@ -19,6 +19,15 @@ public class PlayerAttackTrigger : MonoBehaviour
         {
             if (hitObjects.Contains(other.gameObject)) return;
             hitObjects.Add(other.gameObject);
+            int damageFinal;
+            if (GameManager.Instance.EnableGrowth)
+            {
+                damageFinal = damage + GameManager.Instance.DamageBounus;
+            }
+            else
+            {
+                damageFinal = damage;
+            }
 
             Vector3 point = other.ClosestPoint(transform.position);
 
@@ -27,9 +36,9 @@ public class PlayerAttackTrigger : MonoBehaviour
 
             GameObject number = GameObjectPool.Instance.RequestCacheGameObejct(numberText, 1f);
             number.transform.position = point;
-            number.GetComponentInChildren<DamagePopup>().Init(damage);
+            number.GetComponentInChildren<DamagePopup>().Init(damageFinal);
 
-            other.SendMessageUpwards("Damage", damage, SendMessageOptions.DontRequireReceiver);
+            other.SendMessageUpwards("Damage", damageFinal, SendMessageOptions.DontRequireReceiver);
 
             hitEnemy();
         }

@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
     public bool isNextTargetPorfomed { get; set; }
     public bool lockedOnGround { get; set; }
     public bool UseGravity { get; set; }
+    public bool isDead { get; set; }
 
     public bool HasStamina => numericalSystem.HasStamina;
 
@@ -116,6 +117,8 @@ public class PlayerController : MonoBehaviour
         sweatParticle = transform.Find("SweatParticle").GetComponent<ParticleSystem>();
         dustParticle = transform.Find("DustParticle").GetComponent<ParticleSystem>();
         HealingParticle = transform.Find("HealParticle").gameObject;
+
+        EventCenter.AddListener(FunctionType.RestartLevel, Revive);
 
         var triggers = GetComponentsInChildren<PlayerAttackTrigger>();
         foreach (var trigger in triggers)
@@ -333,9 +336,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void HoleEnter(Vector3[] fromToPos)
+    public void HoleEnter(Vector3[] fromToPos)
     {
-        print("?");
         fromToPosTemp = fromToPos;
         stateMachine.SwitchState(typeof(PlayerState_HoleEnter));
     }
@@ -348,7 +350,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Damage(Tuple<int, Vector3> Info)
     {
-        if (isDashing) return;
+        if (isDashing || isDead) return;
         DamagePos = Info.Item2;
         numericalSystem.Damage(Info.Item1);
         if (numericalSystem.HasHealth)
@@ -366,6 +368,11 @@ public class PlayerController : MonoBehaviour
         HealingParticle.SetActive(true);
         numericalSystem.Heal((int)Amount);
         Invoke(nameof(StopHealingParticle), 1);
+    }
+    void Revive()
+    {
+        Heal(100);
+        stateMachine.SwitchState(typeof(PlayerState_Idle));
     }
     void StopHealingParticle()
     {
@@ -415,5 +422,9 @@ public class PlayerController : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(xCamRot, yCamRot, 0);
             cameraFollowPos.rotation = rotation;
         }
+    }
+    private void OnDestroy()
+    {
+        EventCenter.RemoveListener(FunctionType.RestartLevel, Revive);
     }
 }

@@ -15,12 +15,14 @@ public class TutorialTwo : MonoBehaviour
             minion.Die += MinionDie;
         }
     }
-    void MinionDie()
+    void MinionDie(MinionController minion)
     {
         dieCount++;
+        minion.Die -= MinionDie;
         if (dieCount >= 3)
         {
             GameManager.Instance.LoadLevelThree();
+            Destroy(gameObject, 0.5f);
         }
     }
 }

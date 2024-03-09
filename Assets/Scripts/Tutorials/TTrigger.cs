@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class TTrigger : MonoBehaviour
 {
@@ -11,14 +12,18 @@ public class TTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Time.timeScale = 0f;
-            activated = true;
+            Time.timeScale = 0;
             ui.SetActive(true);
+            ui.GetComponent<CanvasGroup>().DOFade(1, 0.3f).SetUpdate(true).OnComplete(() => AnimOver());
             foreach (GameObject go in gos)
             {
                 go.SetActive(false);
             }
         }
+    }
+    void AnimOver()
+    {
+        activated = true;
     }
     private void Update()
     {
@@ -26,8 +31,12 @@ public class TTrigger : MonoBehaviour
         {
             Time.timeScale = 1;
             activated = false;
-            ui.SetActive(false);
-            gameObject.SetActive(false);
+            ui.GetComponent<CanvasGroup>().DOFade(0, 0.5f).SetUpdate(true).OnComplete(() => Close());
         }
+    }
+    void Close()
+    {
+        ui.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

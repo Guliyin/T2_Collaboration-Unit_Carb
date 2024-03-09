@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animName: PlayerState_Dead
   transitionDuration: 0.1
-  resetTimer: 3
+  stuntForce: 15
+  deceleration: 30

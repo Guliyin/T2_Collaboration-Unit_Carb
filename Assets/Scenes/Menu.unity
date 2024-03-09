@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -353,6 +353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685f6398a226da649a7cbd2340baf2b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetPos: {x: 28.5, y: -9.391, z: -2}
+  deadTimer: 5
   levels:
   - {fileID: 6585872323737145354, guid: 23cfc621302a32e408b88abf0f040dfb, type: 3}
   - {fileID: 5723331715733885494, guid: 5f5d6c2fc145099469e65de000f3cbb1, type: 3}
@@ -802,6 +804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 991709870}
   - component: {fileID: 991709871}
+  - component: {fileID: 991709872}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -877,8 +880,33 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1773572676}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: SetFocus
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 991709869}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
+--- !u!114 &991709872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991709869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &1068450906
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,6 +919,7 @@ GameObject:
   - component: {fileID: 1068450910}
   - component: {fileID: 1068450909}
   - component: {fileID: 1068450908}
+  - component: {fileID: 1068450911}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1025,6 +1054,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068450906}
   m_CullTransparentMesh: 1
+--- !u!114 &1068450911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068450906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1773572676}
+          m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+          m_MethodName: SetFocus
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1068450906}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1080638375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,6 +1696,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1438243731}
   - component: {fileID: 1438243732}
+  - component: {fileID: 1438243733}
   m_Layer: 5
   m_Name: Sensitivity
   m_TagString: Untagged
@@ -1665,8 +1724,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 90, y: -42}
-  m_SizeDelta: {x: 350, y: 20}
+  m_AnchoredPosition: {x: 40.235107, y: -42}
+  m_SizeDelta: {x: 250.4701, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1438243732
 MonoBehaviour:
@@ -1720,6 +1779,35 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1438243733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438243730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1773572676}
+          m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+          m_MethodName: SetFocus
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1438243730}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1444478229
 GameObject:
   m_ObjectHideFlags: 0
@@ -1996,6 +2084,7 @@ GameObject:
   - component: {fileID: 1513150596}
   - component: {fileID: 1513150595}
   - component: {fileID: 1513150594}
+  - component: {fileID: 1513150597}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2130,6 +2219,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513150592}
   m_CullTransparentMesh: 1
+--- !u!114 &1513150597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513150592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1773572676}
+          m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+          m_MethodName: SetFocus
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1513150592}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1585370213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,6 +2422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1679406319}
   - component: {fileID: 1679406320}
+  - component: {fileID: 1679406321}
   m_Layer: 5
   m_Name: Volume
   m_TagString: Untagged
@@ -2331,8 +2450,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 90, y: 60.1}
-  m_SizeDelta: {x: 350, y: 20}
+  m_AnchoredPosition: {x: 40.235107, y: 60.1}
+  m_SizeDelta: {x: 250.4701, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1679406320
 MonoBehaviour:
@@ -2386,6 +2505,35 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1679406321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679406318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1773572676}
+          m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+          m_MethodName: SetFocus
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1679406318}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1680332042
 GameObject:
   m_ObjectHideFlags: 0

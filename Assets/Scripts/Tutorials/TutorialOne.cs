@@ -13,7 +13,7 @@ public class TutorialOne : MonoBehaviour
     {
         levelOneMinion.Die += LevelOneFinish;
     }
-    void LevelOneFinish()
+    void LevelOneFinish(MinionController minion)
     {
         activated = true;
         Time.timeScale = 0;
@@ -27,7 +27,12 @@ public class TutorialOne : MonoBehaviour
             Time.timeScale = 1;
             activated = false;
             ui.SetActive(false);
-            gameObject.SetActive(false);
+            Destroy(GameObject.Find("Tutorial"));
+            Destroy(gameObject, 0.5f);
         }
+    }
+    private void OnDisable()
+    {
+        levelOneMinion.Die -= LevelOneFinish;
     }
 }

@@ -37,10 +37,12 @@ public class BossController : MonoBehaviour
     }
     private void Start()
     {
-        GameObject.Find("GameUI").transform.GetChild(3).gameObject.SetActive(true);
+        GameObject.Find("GameUI").transform.Find("BossHP").gameObject.SetActive(true);
         healthBar = FindObjectOfType<HealthBar_Boss>();
         healthBar.Init(healthSystem.NormalizedAmount, healthMax);
         healthSystem.OnDamaged += OnDamaged;
+        healthSystem.OnHealed += OnHealed;
+        Heal(healthMax);
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -67,15 +69,23 @@ public class BossController : MonoBehaviour
     void OnDamaged(object sender, EventArgs e)
     {
         healthBar.HealthSystem_OnDamaged(healthSystem.Amount);
-        if (healthSystem.Amount == 0) print("Die");
     }
     public void Damage(int damage)
     {
         healthSystem.Damage(damage);
+        GameManager.Instance.CollectDamage(damage);
         if (healthSystem.Amount <= 0)
         {
             stateMachine.SwitchState(typeof(BossState_Dead));
         }
+    }
+    public void Heal(int amount)
+    {
+        healthSystem.Heal(amount);
+    }
+    void OnHealed(object sender, EventArgs e)
+    {
+        healthBar.HealthSystem_OnHealed(healthSystem.Amount);
     }
     public Type NextMove()
     {
@@ -98,7 +108,7 @@ public class BossController : MonoBehaviour
             case 0:
                 return typeof(BossState_TreadPre);
             case 1:
-                return typeof(BossState_Grab);
+                return typeof(BossState_GrabPre);
             case 2:
                 return typeof(BossState_GrabTwice);
             case 3:

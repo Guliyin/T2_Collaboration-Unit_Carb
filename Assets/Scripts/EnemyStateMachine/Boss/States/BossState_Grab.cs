@@ -14,7 +14,7 @@ public class BossState_Grab : BossState
     {
         if (IsAnimationFinished)
         {
-            stateMachine.SwitchState(typeof(BossState_Chase));
+            stateMachine.SwitchState(typeof(BossState_GrabAft));
         }
     }
 }

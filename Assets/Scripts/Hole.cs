@@ -13,11 +13,13 @@ public class Hole : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        print("Why");
-        Vector3[] fromToPos = { transform.position, exit.transform.position };
-        CoolDown();
-        exit.SendMessage(nameof(CoolDown));
-        other.SendMessage("HoleEnter", fromToPos, SendMessageOptions.DontRequireReceiver);
+        if (other.CompareTag("Player"))
+        {
+            Vector3[] fromToPos = { transform.position, exit.transform.position };
+            CoolDown();
+            exit.SendMessage(nameof(CoolDown));
+            other.GetComponent<PlayerController>().HoleEnter(fromToPos);
+        }
     }
 
     void CoolDown()

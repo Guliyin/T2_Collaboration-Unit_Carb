@@ -44,6 +44,11 @@ public class HealthBar_Boss : MonoBehaviour
 
         healthText.text = health + "/" + maxHealth;
     }
+    public void HealthSystem_OnHealed(float health)
+    {
+        SetHealth((float)health / maxHealth);
+        healthText.text = health + "/" + maxHealth;
+    }
 
     void SetHealth(float healthNormalized)
     {

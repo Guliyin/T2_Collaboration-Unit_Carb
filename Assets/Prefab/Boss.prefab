@@ -341,7 +341,7 @@ Transform:
   - {fileID: 900686307961020512}
   - {fileID: 832259036939427847}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: -1.579, y: -261.926, z: -4.175}
 --- !u!114 &1704936461785892670
 MonoBehaviour:
@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed60677bfe0980348b569a5b011333c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthMax: 1000
+  healthMax: 1500
   treadArea: {fileID: 852273635405173964}
   SpawnPos: {fileID: 832259036939427847}
   trash: {fileID: 1462587213604746159, guid: af6fe481ea7430f45a1bfafa1fc01b5b, type: 3}
@@ -381,7 +381,9 @@ MonoBehaviour:
   - BossState_Summon
   - BossState_Charge
   - BossState_Stun
+  - BossState_GrabPre
   - BossState_Grab
+  - BossState_GrabAft
   - BossState_GrabTwice
   - BossState_Dead
 --- !u!114 &7349808462798719719
@@ -412,7 +414,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3021069263245981867}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 4
+  m_Radius: 2.3
   m_Speed: 3.5
   m_Acceleration: 40
   avoidancePriority: 50
@@ -5654,7 +5656,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5668480982859927330}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
@@ -12125,7 +12127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793f5605d78d0ac4090bf1ea6af7939a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 35
 --- !u!1 &3206688864542563482 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6380146456272250095, guid: 0a5632b4a8ee5e947beacdeb4625628a,
@@ -12165,7 +12167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793f5605d78d0ac4090bf1ea6af7939a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 35
 --- !u!4 &3607726231279823160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4171582253461450419, guid: 0a5632b4a8ee5e947beacdeb4625628a,

@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ddec4003adaf1419bbb567637e7847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthMax: 30
+  healthMax: 50
   isSpecial: 0
   textutre: {fileID: 2800000, guid: 56fec393af632be47a2d0a4c73cca65d, type: 3}
   attackArea: {fileID: 5463991459155673500}

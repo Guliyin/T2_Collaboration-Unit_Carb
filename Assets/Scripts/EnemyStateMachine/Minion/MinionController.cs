@@ -21,7 +21,7 @@ public class MinionController : MonoBehaviour
 
     public Vector3 MoveSpeed => new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
-    public Action Die;
+    public Action<MinionController> Die;
     [HideInInspector] public MinionParameters parameters;
     [HideInInspector] public Transform player;
     [HideInInspector] public bool isDead;
@@ -91,7 +91,7 @@ public class MinionController : MonoBehaviour
         }
         if (isSpecial)
         {
-            Die();
+            Die(this);
         }
         Destroy(gameObject, 0.2f);
     }
