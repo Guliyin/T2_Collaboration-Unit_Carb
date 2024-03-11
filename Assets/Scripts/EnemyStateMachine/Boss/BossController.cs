@@ -24,6 +24,7 @@ public class BossController : MonoBehaviour
 
     public float agentCurSpeed => navMeshAgent.velocity.magnitude;
     public float agentMaxSpeed => navMeshAgent.speed;
+    public bool isDead { get; set; }
 
     private void Awake()
     {
@@ -74,7 +75,7 @@ public class BossController : MonoBehaviour
     {
         healthSystem.Damage(damage);
         GameManager.Instance.CollectDamage(damage);
-        if (healthSystem.Amount <= 0)
+        if (healthSystem.Amount <= 0 && !isDead)
         {
             stateMachine.SwitchState(typeof(BossState_Dead));
         }
@@ -121,7 +122,7 @@ public class BossController : MonoBehaviour
     }
     public void SpawnTrash()
     {
-        Instantiate(trash, SpawnPos.GetChild(0).transform.position, Quaternion.identity);
-        Instantiate(trash, SpawnPos.GetChild(1).transform.position, Quaternion.identity);
+        Instantiate(trash, SpawnPos.GetChild(0).transform.position, Quaternion.identity, transform.parent);
+        Instantiate(trash, SpawnPos.GetChild(1).transform.position, Quaternion.identity, transform.parent);
     }
 }

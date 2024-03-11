@@ -41,6 +41,8 @@ public class PlayerAttackTrigger : MonoBehaviour
             other.SendMessageUpwards("Damage", damageFinal, SendMessageOptions.DontRequireReceiver);
 
             hitEnemy();
+
+            AudioManager.Instance.PlayAudio(new string[] {"Enemy_Get_Hit_1", "Enemy_Get_Hit_2" });
         }
     }
     public void ClearColliderCache()

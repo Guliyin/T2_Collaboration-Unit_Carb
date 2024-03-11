@@ -29,6 +29,7 @@ public class MedKit : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerController>().Heal(amount);
+            AudioManager.Instance.PlayAudio("Get_Heal");
             StartCoroutine(CoolDown());
         }
     }

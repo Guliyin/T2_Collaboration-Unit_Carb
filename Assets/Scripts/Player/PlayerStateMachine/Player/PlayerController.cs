@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
     [Header("µ÷ÊÔÑ¡Ïî")]
     [SerializeField] bool enableHitStop;
     [SerializeField] bool enableCameraShake;
-    [Range(0, 1)]
-    [SerializeField] float mouseSensitivity = 0.5f;
     [Range(15, 30)]
     [SerializeField] float gamepadSensitivityMultiplier;
     [Range(0, 100)]
@@ -32,6 +30,7 @@ public class PlayerController : MonoBehaviour
     Transform cameraFollowPos;
     float xCamRot;
     float yCamRot;
+    float mouseSensitivity => GameManager.Instance.Sensitivity;
     float sensitivity
     {
         get

@@ -12,6 +12,7 @@ public class PlayerState_FastLeftAttack2 : PlayerState
     {
         base.Enter();
         //player.DeductStamina(staminaCost);
+        AudioManager.Instance.PlayAudio("Left Attack_2");
         input.HasAttackInputBuffer = 0;
         player.Move(moveSpeed * player.transform.forward);
         currentSpeed = player.MoveSpeed;

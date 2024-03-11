@@ -103,4 +103,11 @@ public class MinionController : MonoBehaviour
             player.GetComponent<PlayerController>().Damage(damageInfo);
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("KillZone"))
+        {
+            stateMachine.SwitchState(typeof(MinionState_Dead));
+        }
+    }
 }

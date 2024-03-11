@@ -10,6 +10,7 @@ public class PlayerState_Dash : PlayerState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.Instance.PlayAudio(new string[] {"Dash_1","Dash_2"});
         player.isDashing = true;
         player.DeductStamina(staminaCost);
         currentSpeed = player.MoveSpeed;

@@ -11,6 +11,7 @@ public class PlayerState_RightAttack : PlayerState
     {
         base.Enter();
         //player.DeductStamina(staminaCost);
+        AudioManager.Instance.PlayAudio(new string[] { "Right_Attack_1", "Right_Attack_2" });
         player.Move(moveSpeed * player.transform.forward);
         currentSpeed = player.MoveSpeed;
         if (player.isLocking)

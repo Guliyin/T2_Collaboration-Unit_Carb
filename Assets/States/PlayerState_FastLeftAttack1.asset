@@ -16,4 +16,4 @@ MonoBehaviour:
   transitionDuration: 0.02
   staminaCost: 1
   deceleration: 50
-  moveSpeed: 0
+  moveSpeed: 4

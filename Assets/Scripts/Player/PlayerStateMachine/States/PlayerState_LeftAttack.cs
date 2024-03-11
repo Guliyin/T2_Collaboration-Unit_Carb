@@ -7,10 +7,13 @@ public class PlayerState_LeftAttack : PlayerState
     [SerializeField] float deceleration = 30;
     [SerializeField] float moveSpeed = 6;
     [SerializeField] float cancel = 0.5f;
+
+    [SerializeField] AudioClip audio;
     public override void Enter()
     {
         base.Enter();
         //player.DeductStamina(staminaCost);
+        AudioManager.Instance.PlayAudio("Left Attack_1");
         player.Move(moveSpeed * player.transform.forward);
         currentSpeed = player.MoveSpeed;
         if (player.isLocking)

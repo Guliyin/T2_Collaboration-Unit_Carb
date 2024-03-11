@@ -9,5 +9,8 @@ public class BossState_Dead : BossState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.Instance.PlayAudio("Boss_Die");
+        boss.isDead = true;
+        EventCenter.Broadcast(FunctionType.PlayerWin);
     }
 }

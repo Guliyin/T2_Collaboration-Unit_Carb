@@ -1,5 +1,6 @@
 public enum FunctionType
 {
     PlayerDead,
-    RestartLevel
+    RestartLevel,
+    PlayerWin
 }

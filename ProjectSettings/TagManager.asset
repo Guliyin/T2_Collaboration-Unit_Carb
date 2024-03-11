@@ -8,6 +8,7 @@ TagManager:
   - Focus
   - SlashCam
   - PauseMenu
+  - KillZone
   layers:
   - Default
   - TransparentFX

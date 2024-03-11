@@ -20,7 +20,7 @@ public class PlayerDiedUI : MonoBehaviour
     {
         statusText.text =   "Amount of damage done: " + GameManager.Instance.DamageDealtOnce + "\n" +
                             "Total amount of damage done: " + GameManager.Instance.DamageDealtAll + "\n" +
-                            "Attack bonus: +" + (int)(GameManager.Instance.DamageDealtAll / 100f);
+                            "Attack bonus: +" + Mathf.RoundToInt(GameManager.Instance.DamageDealtAll / 1000f);
         group.DOFade(1, 0.7f);
     }
     void HideUI()

@@ -8,6 +8,8 @@ public class PlayerState_Dive : PlayerState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.Instance.PlayAudio("Player_Teleport");
+        player.isDashing = true;
         player.mesh.gameObject.SetActive(false);
         player.transform.DOMove(player.fromToPosTemp[1], divingTime);
         player.UseGravity = false;
@@ -25,5 +27,6 @@ public class PlayerState_Dive : PlayerState
     {
         player.mesh.gameObject.SetActive(true);
         player.UseGravity = true;
+        player.isDashing = false;
     }
 }

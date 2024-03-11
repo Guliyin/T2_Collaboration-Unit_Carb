@@ -9,6 +9,7 @@ public class BossState_GrabPre : BossState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.Instance.PlayAudio("Boss_Skill_Smash");
         //boss.treadArea.gameObject.SetActive(true);
     }
     public override void LogicUpdate()
@@ -21,7 +22,7 @@ public class BossState_GrabPre : BossState
         float yAxis = yAxisBeforeCorrection - theta;
         Quaternion finalRot = Quaternion.Euler(0, yAxis, 0);
 
-        boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, finalRot, Time.deltaTime * parameters.TurnRate);
+        boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, finalRot, Time.deltaTime * parameters.TurnRate * 2);
 
 
         if (IsAnimationFinished)
