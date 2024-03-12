@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -12,6 +13,7 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] Vector3 resetPos;
     [SerializeField] float deadTimer;
     [SerializeField] GameObject[] levels;
+    [SerializeField] AudioMixer audioMixer;
     GameObject[] LevelTemp = new GameObject[3];
 
     private bool isPaused;
@@ -83,7 +85,7 @@ public class GameManager : MonoSingleton<GameManager>
             ResumeGame();
         }
 
-        ChangeVolume(0.5f);
+        ChangeVolume(1);
         MouseSensitivity(0.3f);
         SetPlayerGrowth(true);
 
@@ -144,6 +146,8 @@ public class GameManager : MonoSingleton<GameManager>
     public void ChangeVolume(float amount)
     {
         volume = amount;
+        float volumedb = amount * 80 - 80;
+        audioMixer.SetFloat("Volume", volumedb);
     }
     public void MouseSensitivity(float amount)
     {

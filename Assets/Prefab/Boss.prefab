@@ -341,7 +341,7 @@ Transform:
   - {fileID: 900686307961020512}
   - {fileID: 832259036939427847}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -1.579, y: -261.926, z: -4.175}
 --- !u!114 &1704936461785892670
 MonoBehaviour:
@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed60677bfe0980348b569a5b011333c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthMax: 800
+  healthMax: 2000
   treadArea: {fileID: 852273635405173964}
   SpawnPos: {fileID: 832259036939427847}
   trash: {fileID: 1462587213604746159, guid: af6fe481ea7430f45a1bfafa1fc01b5b, type: 3}

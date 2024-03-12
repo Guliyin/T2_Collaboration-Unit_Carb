@@ -22,6 +22,7 @@ public class MainMenu : MonoBehaviour
     {
         var eventSystem = EventSystem.current;
         eventSystem.SetSelectedGameObject(go);
+        //AudioManager.Instance.PlayAudio("UI_Sound_Select");
     }
     public void StartGame()
     {

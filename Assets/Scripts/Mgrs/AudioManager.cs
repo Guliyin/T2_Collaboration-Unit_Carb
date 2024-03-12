@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class AudioManager : MonoSingleton<AudioManager>
 {
-    [SerializeField] AudioSource audioSource;
+    AudioSource audioSource;
     [SerializeField] AudioClip[] Clips;
 
     Dictionary<string, AudioClip> ClipsDict;
+    private void Awake()
+    {
+        object[] objs = FindObjectsOfType(typeof(AudioManager));
+        if (objs.Length > 1)
+        {
+            Destroy(gameObject);
+        }
+    }
     private void Start()
     {
         audioSource = GetComponent<AudioSource>(); 

@@ -38,7 +38,7 @@ Transform:
   - {fileID: 8923938529609134821}
   - {fileID: 6089795132889400999}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2934159283833541662
 Rigidbody:
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ddec4003adaf1419bbb567637e7847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthMax: 35
+  healthMax: 70
   isSpecial: 0
   textutre: {fileID: 2800000, guid: 56fec393af632be47a2d0a4c73cca65d, type: 3}
   attackArea: {fileID: 5725528310727867272}
@@ -148,7 +148,7 @@ MonoBehaviour:
   turnRate: 4
   attackDistance: 6
   attackSpeed: 20
-  damage: 19
+  damage: 22
 --- !u!1 &2691909404686739942
 GameObject:
   m_ObjectHideFlags: 0

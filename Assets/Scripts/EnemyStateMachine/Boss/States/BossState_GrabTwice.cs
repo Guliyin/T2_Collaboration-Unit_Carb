@@ -19,7 +19,7 @@ public class BossState_GrabTwice : BossState
         float yAxis = yAxisBeforeCorrection - theta;
         Quaternion finalRot = Quaternion.Euler(0, yAxis, 0);
 
-        boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, finalRot, Time.deltaTime * parameters.TurnRate);
+        boss.transform.rotation = Quaternion.Slerp(boss.transform.rotation, finalRot, Time.deltaTime * parameters.TurnRate * 1.4f);
 
 
         if (IsAnimationFinished)

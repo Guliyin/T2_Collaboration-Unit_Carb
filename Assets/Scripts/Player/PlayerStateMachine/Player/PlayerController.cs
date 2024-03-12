@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
         HealingParticle = transform.Find("HealParticle").gameObject;
 
         EventCenter.AddListener(FunctionType.RestartLevel, Revive);
+        EventCenter.AddListener(FunctionType.PlayerWin, Win);
 
         var triggers = GetComponentsInChildren<PlayerAttackTrigger>();
         foreach (var trigger in triggers)
@@ -372,6 +373,10 @@ public class PlayerController : MonoBehaviour
     {
         Heal(100);
         stateMachine.SwitchState(typeof(PlayerState_Idle));
+    }
+    void Win()
+    {
+        stateMachine.SwitchState(typeof(PlayerState_Win));
     }
     void StopHealingParticle()
     {
